@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/maastricht/main/json-structure/maastricht-dataverse-structure.json",
+  "name": "MaastrichtDataverse",
+  "description": "JSON Structure for the DataverseNL dataverse object (Maastricht University collection, alias: maastricht).",
+  "type": "object",
+  "properties": {
+    "id": { "type": "int64" },
+    "alias": { "type": "string" },
+    "name": { "type": "string" },
+    "affiliation": { "type": "string" },
+    "permissionRoot": { "type": "boolean" },
+    "description": { "type": "string" },
+    "dataverseType": { "type": "string" },
+    "isMetadataBlockRoot": { "type": "boolean" },
+    "isFacetRoot": { "type": "boolean" },
+    "ownerId": { "type": "int64" },
+    "creationDate": { "type": "string", "format": "date-time" },
+    "theme": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "int64" },
+        "logo": { "type": "string" },
+        "linkColor": { "type": "string" },
+        "textColor": { "type": "string" },
+        "backgroundColor": { "type": "string" },
+        "logoBackgroundColor": { "type": "string" }
+      }
+    },
+    "effectiveRequiresFilesToPublishDataset": { "type": "boolean" },
+    "isReleased": { "type": "boolean" }
+  },
+  "required": ["id", "alias", "name"]
+}

@@ -1,0 +1,92 @@
+{
+  "status": "OK",
+  "data": {
+    "q": "*",
+    "total_count": 888,
+    "start": 0,
+    "spelling_alternatives": {},
+    "items": [
+      {
+        "name": "Replication Data for Chapter 3",
+        "type": "dataset",
+        "url": "https://doi.org/10.34894/VNCVSL",
+        "global_id": "doi:10.34894/VNCVSL",
+        "description": "Replication data for Chapter 3",
+        "published_at": "2023-09-25T14:05:07Z",
+        "publisher": "Agricultural Policies and Agricultural Performance in Latin America and the Caribbean",
+        "citationHtml": "De Salvo, Carmine Paolo, 2023, \"Replication Data for Chapter 3\", <a href=\"https://doi.org/10.34894/VNCVSL\" target=\"_blank\">https://doi.org/10.34894/VNCVSL</a>, DataverseNL, V1",
+        "identifier_of_dataverse": "agricultural_policies_and_agricultural_performance",
+        "name_of_dataverse": "Agricultural Policies and Agricultural Performance in Latin America and the Caribbean",
+        "citation": "De Salvo, Carmine Paolo, 2023, \"Replication Data for Chapter 3\", https://doi.org/10.34894/VNCVSL, DataverseNL, V1",
+        "publicationStatuses": [
+          "Published"
+        ],
+        "storageIdentifier": "surf://10.34894/VNCVSL",
+        "subjects": [
+          "Social Sciences"
+        ],
+        "fileCount": 36,
+        "versionId": 25359,
+        "versionState": "RELEASED",
+        "majorVersion": 1,
+        "minorVersion": 0,
+        "createdAt": "2023-09-25T13:59:43Z",
+        "updatedAt": "2023-09-25T14:05:07Z",
+        "contacts": [
+          {
+            "name": "Notten, Ad",
+            "affiliation": "Maastricht University"
+          }
+        ],
+        "authors": [
+          "De Salvo, Carmine Paolo"
+        ]
+      },
+      {
+        "name": "Sjim Romme - PhD project data for study 5.",
+        "type": "dataset",
+        "url": "https://doi.org/10.34894/IQUUNF",
+        "global_id": "doi:10.34894/IQUUNF",
+        "description": "Title How to train patients for participation in quality improvement of care. Abstract Objectives Patient and public involvement is regarded as vital in fostering high-quality care. While involvement has clear societal advantages, it is still widely viewed as tokenistic and surrounded by issues of representation. This study aims to understand how patients and informal caregivers can be trained to become patient partners who use their experiential expertise to contribute to quality improvement on a collective level. Design Using an action research approach, the Patient As a Person Academy, a 15-week training programme for patients and informal caregivers, was developed, tested, and evaluated in three development cycles. Evaluation methods varied per cycle and included open-ended questionnaires (N=27), semi-structured interviews (N=35), and agile evaluation sessions of all 15 training sessions. Setting and participants We purposively sampled patients and informal caregivers who had prior experience in patient and public involvement. Patients and informal caregivers who participated as patient and partner educators in health professions education in The Netherlands could participate Intervention Participants followed the Patient As a Person Academy, a 15-week training programme that prepares patients and informal caregivers to become patient partners. Results Participants reported that the Patient As a Person Academy’s focus on self-management skills, understanding healthcare professionals’ perspectives, and communication skills helped them engage in meaningful dialogue with healthcare professionals as patient partners and made them more confident in their roles. However, tailoring towards individual participants’ levels of acceptance of illness and reflexivity was needed. Participants reported that, next to the training programme, peer-to-peer coaching and guidance towards roles in quality improvement initiatives would be necessary to optimise their contributions. Conclusions Initiatives like the Patient As a Person Academy may alleviate the problems of tokenism in patient and public involvement. However, extensively preparing patients and informal caregivers does raise issues around representation. Data index The study contained 35 individual interviews and one questionnaire: Folder name -.> Description Transcripts pre-interviews cohort 2 -> Contains the transcripts of sixteen individual pre-interviews of the second cohort following the PAP-Academy Transcripts post-interviews cohort 2 -> Contains the transcripts of fifteen individual post-interviews of the second cohort following the PAP-Academy Transcripts postaction-interviews cohort 2 -> Contains the transcripts of four individual post-interviews of the second cohort following the PAP-Academy, six months after concluding the PAP-Academy Open-ended questionnaire -> Contains the Excel-file with the data used in the questionnaire participants filled out six months after participating in the PAP-Academy",
+        "published_at": "2024-08-23T17:24:06Z",
+        "publisher": "Shedata - Sjim Romme",
+        "citationHtml": "Sjim Romme, 2024, \"Sjim Romme - PhD project data for study 5.\", <a href=\"https://doi.org/10.34894/IQUUNF\" target=\"_blank\">https://doi.org/10.34894/IQUUNF</a>, DataverseNL, V1",
+        "identifier_of_dataverse": "shedata-sjim-romme",
+        "name_of_dataverse": "Shedata - Sjim Romme",
+        "citation": "Sjim Romme, 2024, \"Sjim Romme - PhD project data for study 5.\", https://doi.org/10.34894/IQUUNF, DataverseNL, V1",
+        "publicationStatuses": [
+          "Published"
+        ],
+        "storageIdentifier": "surf://10.34894/IQUUNF",
+        "keywords": [
+          "Health policy; Quality in health care; Patient participation; Patient-centered care; Patient satisfaction; Medical education and training"
+        ],
+        "subjects": [
+          "Social Sciences"
+        ],
+        "fileCount": 36,
+        "versionId": 29595,
+        "versionState": "RELEASED",
+        "majorVersion": 1,
+        "minorVersion": 0,
+        "createdAt": "2024-08-23T16:57:32Z",
+        "updatedAt": "2024-08-23T17:24:06Z",
+        "contacts": [
+          {
+            "name": "shedata",
+            "affiliation": "maastrichtuniversity.nl"
+          }
+        ],
+        "publications": [
+          {
+            "citation": "<b>Title</b><br> How to train patients for participation in quality improvement of care. <br><br> <b>Journal</b><br> Submitted to BMJ Open<br><br> <b>Authors</b><br> Sjim Romme, Max Hermans, Matthijs Bosveld, Hélène van den Besselaar, Angela Plak, Loes van Bokhoven<br><br>"
+          }
+        ],
+        "authors": [
+          "Sjim Romme"
+        ]
+      }
+    ],
+    "count_in_response": 2
+  }
+}

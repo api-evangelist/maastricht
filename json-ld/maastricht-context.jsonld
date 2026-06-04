@@ -1,0 +1,63 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "dvn": "https://dataverse.nl/vocab/",
+    "@vocab": "https://maastrichtuniversity.nl/vocab/",
+    "name": "schema:name",
+    "url": "schema:url",
+    "description": "schema:description",
+    "affiliation": "schema:affiliation",
+    "institution": {
+      "@id": "schema:CollegeOrUniversity",
+      "@type": "@id"
+    },
+    "Dataverse": "dvn:Dataverse",
+    "Dataset": {
+      "@id": "schema:Dataset",
+      "@type": "@id"
+    },
+    "DataFile": "schema:DataDownload",
+    "alias": "dvn:alias",
+    "dataverseType": "dvn:dataverseType",
+    "global_id": {
+      "@id": "schema:identifier",
+      "@type": "@id"
+    },
+    "global_id_doi": "schema:sameAs",
+    "publisher": "schema:publisher",
+    "published_at": {
+      "@id": "schema:datePublished",
+      "@type": "schema:DateTime"
+    },
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "schema:DateTime"
+    },
+    "updatedAt": {
+      "@id": "schema:dateModified",
+      "@type": "schema:DateTime"
+    },
+    "creationDate": {
+      "@id": "schema:dateCreated",
+      "@type": "schema:DateTime"
+    },
+    "authors": "schema:author",
+    "contacts": "schema:contactPoint",
+    "subjects": "schema:about",
+    "citation": "schema:citation",
+    "versionState": "dvn:versionState",
+    "fileCount": "dvn:fileCount",
+    "storageIdentifier": "dvn:storageIdentifier"
+  },
+  "@type": "schema:CollegeOrUniversity",
+  "name": "Maastricht University",
+  "url": "https://www.maastrichtuniversity.nl/",
+  "schema:sameAs": "https://ror.org/02jz4aj89",
+  "dvn:dataverse": {
+    "@type": "Dataverse",
+    "alias": "maastricht",
+    "name": "Maastricht University",
+    "url": "https://dataverse.nl/dataverse/maastricht"
+  }
+}

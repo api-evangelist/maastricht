@@ -27,6 +27,7 @@ tags:
   - Europe
 created: '2026-06-03'
 modified: '2026-06-03'
+# modified bumped 2026-06-03 after adding machine-readable artifacts for the DataverseNL API
 specificationVersion: '0.19'
 apis:
   - aid: maastricht:cris-oai-pmh
@@ -62,6 +63,28 @@ apis:
         url: https://guides.dataverse.org/en/latest/api/
       - type: Website
         url: https://dataverse.nl/dataverse/maastricht
+      - type: OpenAPI
+        url: openapi/maastricht-dataversenl.yaml
+      - type: x-json-schema
+        url: json-schema/maastricht-dataverse-schema.json
+      - type: x-json-schema
+        url: json-schema/maastricht-dataset-schema.json
+      - type: x-json-structure
+        url: json-structure/maastricht-dataverse-structure.json
+      - type: x-json-structure
+        url: json-structure/maastricht-dataset-structure.json
+      - type: x-example
+        url: examples/maastricht-getDataverse-example.json
+      - type: x-example
+        url: examples/maastricht-search-example.json
+      - type: x-example
+        url: examples/maastricht-version-example.json
+      - type: x-spectral-rules
+        url: rules/maastricht-rules.yml
+      - type: x-vocabulary
+        url: vocabulary/maastricht-vocabulary.yml
+      - type: x-json-ld
+        url: json-ld/maastricht-context.jsonld
   - aid: maastricht:ids-github
     name: Maastricht University Institute of Data Science (Open Source)
     description: >-

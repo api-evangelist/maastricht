@@ -1,0 +1,51 @@
+---
+name: Maastricht University
+description: Maastricht University public developer/API footprint review for APIs.json cataloging.
+url: https://raw.githubusercontent.com/api-evangelist/maastricht/refs/heads/main/review.yml
+created: '2026-06-03'
+modified: '2026-06-03'
+reviews:
+  - date: '2026-06-03'
+    rating: 2
+    summary: >-
+      Maastricht University has no unified public developer portal or productized API
+      program. The confirmed machine-readable footprint is standards-based research
+      infrastructure. The Pure (Elsevier) CRIS OAI-PMH endpoint was verified live,
+      returning valid OpenAIRE CERIF 1.2 XML for ListMetadataFormats; the bare /ws/
+      web-services path returns 403 and the OAI Identify verb intermittently 500s but
+      ListMetadataFormats succeeds, confirming a working OAI-PMH service. Research data
+      is published via the shared DataverseNL platform whose API (info/version) returns
+      200, though the Maastricht collection page sits behind an anti-bot challenge for
+      automated clients. The Institute of Data Science GitHub org is real and active.
+      No endpoints were fabricated; only live-confirmed or standards-derived URLs listed.
+    endpoints:
+      - url: https://www.maastrichtuniversity.nl/
+        status: 200
+        note: Official university website, live.
+      - url: https://cris.maastrichtuniversity.nl/
+        status: 200
+        note: Pure (Elsevier) research portal / CRIS, live.
+      - url: https://cris.maastrichtuniversity.nl/ws/oai?verb=ListMetadataFormats
+        status: 200
+        note: OAI-PMH endpoint verified live; returns OpenAIRE CERIF 1.2 XML.
+      - url: https://cris.maastrichtuniversity.nl/ws/
+        status: 403
+        note: Bare Pure web-services path forbidden (expected); OAI sub-path works.
+      - url: https://dataverse.nl/api/info/version
+        status: 200
+        note: DataverseNL public REST API version endpoint, live.
+      - url: https://dataverse.nl/dataverse/maastricht
+        status: 200
+        note: Maastricht Dataverse collection; UI behind anti-bot challenge for bots.
+      - url: https://github.com/MaastrichtU-IDS
+        status: 200
+        note: Official Institute of Data Science GitHub org, active open source.
+      - url: https://library.maastrichtuniversity.nl/
+        status: 200
+        note: University Library site; no public developer API documented.
+      - url: https://datahubmaastricht.nl/
+        status: 200
+        note: DataHub FAIR data services portal; no public open API documented.
+      - url: https://www.linkedin.com/school/maastricht-university/
+        status: 200
+        note: Official LinkedIn school page.

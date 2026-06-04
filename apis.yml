@@ -1,0 +1,100 @@
+---
+aid: maastricht
+name: Maastricht University
+description: >-
+  Maastricht University (UM) is an international research university in Maastricht,
+  Netherlands, known for its Problem-Based Learning model and ranked #230 in the QS
+  World University Rankings 2025. UM does not operate a unified public developer
+  portal; its confirmed machine-readable footprint consists of standards-based
+  research-infrastructure interfaces rather than a productized API program. The
+  Pure (Elsevier) current research information system at cris.maastrichtuniversity.nl
+  exposes a live OAI-PMH endpoint serving OpenAIRE CERIF metadata, research data is
+  published through the shared DataverseNL platform (a Dataverse instance with a
+  public REST API), and the Maastricht University Institute of Data Science maintains
+  an active open-source GitHub organization. Identity is federated via Shibboleth/SAML.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/maastricht/refs/heads/main/apis.yml
+tags:
+  - Education
+  - Higher Education
+  - University
+  - Research
+  - Open Data
+  - Netherlands
+  - Europe
+created: '2026-06-03'
+modified: '2026-06-03'
+specificationVersion: '0.19'
+apis:
+  - aid: maastricht:cris-oai-pmh
+    name: Maastricht University Research Portal (Pure) OAI-PMH
+    description: >-
+      OAI-PMH metadata harvesting endpoint for the Maastricht University Pure
+      (Elsevier) current research information system. Verified live, returning
+      OpenAIRE CERIF 1.2 profile metadata for publications, datasets, and other
+      research outputs. Standard OAI-PMH verbs (Identify, ListMetadataFormats,
+      ListRecords, etc.) are supported.
+    humanURL: https://cris.maastrichtuniversity.nl/
+    baseURL: https://cris.maastrichtuniversity.nl/ws/oai
+    tags: [ Research, OAI-PMH, Metadata, Pure, CERIF, Repository ]
+    properties:
+      - type: Documentation
+        url: https://cris.maastrichtuniversity.nl/
+      - type: x-OAI-PMH
+        url: https://cris.maastrichtuniversity.nl/ws/oai?verb=Identify
+  - aid: maastricht:dataversenl
+    name: DataverseNL Research Data API (Maastricht collection)
+    description: >-
+      Maastricht University publishes and preserves research datasets through the
+      shared DataverseNL platform, a Dataverse instance. Dataverse provides a public
+      native/REST API for searching, retrieving, and managing dataverses, datasets,
+      and files. The Maastricht University collection is hosted at the Maastricht
+      sub-dataverse. The platform exposes a public info/version endpoint and standard
+      Dataverse Search and Data Access APIs.
+    humanURL: https://dataverse.nl/dataverse/maastricht
+    baseURL: https://dataverse.nl/api
+    tags: [ Research Data, Dataverse, Repository, Open Data, REST ]
+    properties:
+      - type: Documentation
+        url: https://guides.dataverse.org/en/latest/api/
+      - type: Website
+        url: https://dataverse.nl/dataverse/maastricht
+  - aid: maastricht:ids-github
+    name: Maastricht University Institute of Data Science (Open Source)
+    description: >-
+      The Maastricht University Institute of Data Science (IDS) maintains an active
+      public GitHub organization with open-source data-science tooling, including
+      MOD-API conformance tooling, the Data Science Research Infrastructure (DSRI)
+      documentation, semantic web / SPARQL endpoint libraries, and cohort metadata
+      explorers. These are open-source projects rather than a hosted institutional
+      API program.
+    humanURL: https://github.com/MaastrichtU-IDS
+    tags: [ Open Source, Data Science, Semantic Web, SPARQL, GitHub ]
+    properties:
+      - type: GitHub
+        url: https://github.com/MaastrichtU-IDS
+      - type: Documentation
+        url: https://dsri.maastrichtuniversity.nl/
+common:
+  - type: Website
+    url: https://www.maastrichtuniversity.nl/
+  - type: GitHub
+    url: https://github.com/MaastrichtU-IDS
+  - type: LinkedIn
+    url: https://www.linkedin.com/school/maastricht-university/
+  - type: Authentication
+    url: https://login.maastrichtuniversity.nl/
+  - type: Plans
+    url: plans/maastricht-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/maastricht-rate-limits.yml
+  - type: FinOps
+    url: finops/maastricht-finops.yml
+  - type: Review
+    url: review.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

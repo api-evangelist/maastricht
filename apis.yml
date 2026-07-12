@@ -102,6 +102,10 @@ apis:
       - type: Documentation
         url: https://dsri.maastrichtuniversity.nl/
 common:
+  - type: VulnerabilityDisclosure
+    url: security/maastricht-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/maastricht-domain-security.yml
   - type: Website
     url: https://www.maastrichtuniversity.nl/
   - type: GitHub

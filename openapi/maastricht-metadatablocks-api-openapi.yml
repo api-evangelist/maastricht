@@ -1,0 +1,42 @@
+openapi: 3.0.3
+info:
+  title: Dataverse Access Metadatablocks API
+  description: 'Open source research data repository software. — DataverseNL installation (v6.9) hosting the Maastricht University research data collection (alias: maastricht). Spec retrieved live from https://dataverse.nl/openapi and saved faithfully as OpenAPI 3.0.3.'
+  version: '6.9'
+servers:
+- url: https://dataverse.nl/api
+  description: DataverseNL production REST API (hosts the Maastricht University collection at /dataverse/maastricht)
+tags:
+- name: Metadatablocks
+paths:
+  /metadatablocks:
+    get:
+      operationId: MetadataBlocks_listMetadataBlocks
+      parameters:
+      - name: onlyDisplayedOnCreate
+        in: query
+        schema:
+          type: boolean
+      - name: returnDatasetFieldTypes
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Metadatablocks
+  /metadatablocks/{identifier}:
+    get:
+      operationId: MetadataBlocks_getMetadataBlock
+      parameters:
+      - name: identifier
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Metadatablocks

@@ -1,0 +1,44 @@
+openapi: 3.0.3
+info:
+  title: Dataverse Access Localcontexts API
+  description: 'Open source research data repository software. — DataverseNL installation (v6.9) hosting the Maastricht University research data collection (alias: maastricht). Spec retrieved live from https://dataverse.nl/openapi and saved faithfully as OpenAPI 3.0.3.'
+  version: '6.9'
+servers:
+- url: https://dataverse.nl/api
+  description: DataverseNL production REST API (hosts the Maastricht University collection at /dataverse/maastricht)
+tags:
+- name: Localcontexts
+paths:
+  /localcontexts/datasets/{id}:
+    get:
+      operationId: LocalContexts_getDatasetLocalContexts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Localcontexts
+  /localcontexts/datasets/{id}/{projectId}:
+    get:
+      operationId: LocalContexts_searchLocalContexts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Localcontexts

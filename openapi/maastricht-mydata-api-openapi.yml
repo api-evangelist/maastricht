@@ -1,0 +1,87 @@
+openapi: 3.0.3
+info:
+  title: Dataverse Access Mydata API
+  description: 'Open source research data repository software. — DataverseNL installation (v6.9) hosting the Maastricht University research data collection (alias: maastricht). Spec retrieved live from https://dataverse.nl/openapi and saved faithfully as OpenAPI 3.0.3.'
+  version: '6.9'
+servers:
+- url: https://dataverse.nl/api
+  description: DataverseNL production REST API (hosts the Maastricht University collection at /dataverse/maastricht)
+tags:
+- name: Mydata
+paths:
+  /mydata/retrieve:
+    get:
+      operationId: DataRetrieverAPI_retrieveMyDataAsJsonString
+      parameters:
+      - name: dataset_valid
+        in: query
+        schema:
+          type: array
+          items:
+            type: boolean
+      - name: dvobject_types
+        in: query
+        schema:
+          type: array
+          items:
+            $ref: '#/components/schemas/DType'
+      - name: filter_validities
+        in: query
+        schema:
+          type: boolean
+      - name: mydata_search_term
+        in: query
+        schema:
+          type: string
+      - name: published_states
+        in: query
+        schema:
+          type: array
+          items:
+            type: string
+      - name: role_ids
+        in: query
+        schema:
+          type: array
+          items:
+            format: int64
+            type: integer
+      - name: selected_page
+        in: query
+        schema:
+          format: int32
+          type: integer
+      - name: userIdentifier
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+      tags:
+      - Mydata
+  /mydata/retrieve/collectionList:
+    get:
+      operationId: DataRetrieverAPI_retrieveMyCollectionList
+      parameters:
+      - name: userIdentifier
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      tags:
+      - Mydata
+components:
+  schemas:
+    DType:
+      enum:
+      - Dataverse
+      - Dataset
+      - DataFile
+      type: string

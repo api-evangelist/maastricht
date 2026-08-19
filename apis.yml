@@ -40,7 +40,7 @@ tags:
 created: '2026-06-03'
 modified: '2026-06-03'
 # modified bumped 2026-06-03 after adding machine-readable artifacts for the DataverseNL API
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: maastricht:cris-oai-pmh
   name: Maastricht University Research Portal (Pure) OAI-PMH

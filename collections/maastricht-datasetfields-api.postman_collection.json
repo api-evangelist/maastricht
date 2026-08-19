@@ -1,0 +1,89 @@
+{
+  "item": [
+    {
+      "id": "06065142-ab9e-46dc-9d8b-b0748e7936a2",
+      "name": "Datasetfields",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "331e1ada-322c-4275-a077-dd2550ce767d",
+          "name": "Dataset Fields list All Facetable Dataset Fields",
+          "request": {
+            "name": "Dataset Fields list All Facetable Dataset Fields",
+            "description": {},
+            "url": {
+              "path": [
+                "datasetfields",
+                "facetables"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "709cef4e-2ddd-4f00-854c-45cb790cdb5d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasetfields",
+                    "facetables"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dataverse.nl/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b86cad99-55c0-4a93-8f87-a9cc9f64e1d9",
+    "name": "Dataverse Access Datasetfields API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Open source research data repository software. — DataverseNL installation (v6.9) hosting the Maastricht University research data collection (alias: maastricht). Spec retrieved live from https://dataverse.nl/openapi and saved faithfully as OpenAPI 3.0.3.",
+      "type": "text/plain"
+    }
+  }
+}

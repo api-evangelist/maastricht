@@ -1,0 +1,409 @@
+{
+  "item": [
+    {
+      "id": "3292b9c9-09df-489a-af12-f0d4befa614a",
+      "name": "Batch",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ce32c179-850b-4436-8ae9-b55ef81c3ef1",
+          "name": "Batch Import harvest",
+          "request": {
+            "name": "Batch Import harvest",
+            "description": {},
+            "url": {
+              "path": [
+                "batch",
+                "harvest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "createDV",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "dv",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "034648c4-f746-4d88-b7b6-68fcfb417dd6",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batch",
+                    "harvest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "createDV",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "dv",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d97b1d86-f8fb-4dca-b7be-63eb17445936",
+          "name": "Batch Import get Import",
+          "request": {
+            "name": "Batch Import get Import",
+            "description": {},
+            "url": {
+              "path": [
+                "batch",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "createDV",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "dv",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f08c8d35-15c7-4fd6-8812-e06ebe8bd64e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batch",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "createDV",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "dv",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ce307b8-5e4a-4350-bbcf-ee3acc3d1b40",
+          "name": "Batch Import post Import",
+          "request": {
+            "name": "Batch Import post Import",
+            "description": {},
+            "url": {
+              "path": [
+                "batch",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dv",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f2da2a1-b6e0-4ae7-aa30-dfda98e441b7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batch",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dv",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26b0b04d-40e8-4ff5-acf3-294a7515509a",
+          "name": "File Record Job Resource get Filesystem Import",
+          "request": {
+            "name": "File Record Job Resource get Filesystem Import",
+            "description": {},
+            "url": {
+              "path": [
+                "batch",
+                "jobs",
+                "import",
+                "datasets",
+                "files",
+                ":identifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "MERGE"
+                },
+                {
+                  "disabled": false,
+                  "key": "totalSize",
+                  "value": "<long>"
+                },
+                {
+                  "disabled": false,
+                  "key": "uploadFolder",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb5a4225-a2f0-4be7-92b4-c0a9b7816500",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batch",
+                    "jobs",
+                    "import",
+                    "datasets",
+                    "files",
+                    ":identifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "MERGE"
+                    },
+                    {
+                      "key": "totalSize",
+                      "value": "<long>"
+                    },
+                    {
+                      "key": "uploadFolder",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dataverse.nl/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f151ad5f-f9ff-4cd0-b885-21a3071caaca",
+    "name": "Dataverse Access Batch API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Open source research data repository software. — DataverseNL installation (v6.9) hosting the Maastricht University research data collection (alias: maastricht). Spec retrieved live from https://dataverse.nl/openapi and saved faithfully as OpenAPI 3.0.3.",
+      "type": "text/plain"
+    }
+  }
+}

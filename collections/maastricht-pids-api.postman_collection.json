@@ -1,0 +1,448 @@
+{
+  "item": [
+    {
+      "id": "b94e0cdd-02a7-4d7d-8141-68f3f20dbcec",
+      "name": "Pids",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6c47e37a-20e9-4160-ad44-41cd155ed20a",
+          "name": "Pids get Pid",
+          "request": {
+            "name": "Pids get Pid",
+            "description": {},
+            "url": {
+              "path": [
+                "pids"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "persistentId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c6b86f31-c3cc-4045-b254-f3f62969d3de",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pids"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "persistentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49fa17d9-58f8-4e23-a553-95bbe13316da",
+          "name": "Pids get Pid Providers",
+          "request": {
+            "name": "Pids get Pid Providers",
+            "description": {},
+            "url": {
+              "path": [
+                "pids",
+                "providers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b1b8c68d-9b12-4b4d-b7d0-8e5d34080411",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pids",
+                    "providers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "39ff3fdc-cbd7-4f09-b410-79a97bcd6528",
+          "name": "Pids get Pid Provider Id",
+          "request": {
+            "name": "Pids get Pid Provider Id",
+            "description": {},
+            "url": {
+              "path": [
+                "pids",
+                "providers",
+                ":persistentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "persistentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9c26144b-cfe2-48b6-95a3-920d51b1b0bf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pids",
+                    "providers",
+                    ":persistentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "persistentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7baf380f-9c56-47da-88c3-20b2ef5a649b",
+          "name": "Pids get Unreserved",
+          "request": {
+            "name": "Pids get Unreserved",
+            "description": {},
+            "url": {
+              "path": [
+                "pids",
+                "unreserved"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "persistentId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "858042d9-1651-4b01-adcd-59c48dd6d81a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pids",
+                    "unreserved"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "persistentId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e99b0f6-81c8-49e8-bf8c-61de21f4ead9",
+          "name": "Pids delete Pid",
+          "request": {
+            "name": "Pids delete Pid",
+            "description": {},
+            "url": {
+              "path": [
+                "pids",
+                ":id",
+                "delete"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae42a889-d8ef-444f-ab56-db457191d744",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pids",
+                    ":id",
+                    "delete"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ea5f8739-4b84-44cb-9673-de430cb20eac",
+          "name": "Pids reserve Pid",
+          "request": {
+            "name": "Pids reserve Pid",
+            "description": {},
+            "url": {
+              "path": [
+                "pids",
+                ":id",
+                "reserve"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c63f2eb-b59e-4500-b617-24e6ccaed196",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pids",
+                    ":id",
+                    "reserve"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dataverse.nl/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "886e2863-acb2-422a-929b-5eb8fe896f6e",
+    "name": "Dataverse Access Pids API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Open source research data repository software. — DataverseNL installation (v6.9) hosting the Maastricht University research data collection (alias: maastricht). Spec retrieved live from https://dataverse.nl/openapi and saved faithfully as OpenAPI 3.0.3.",
+      "type": "text/plain"
+    }
+  }
+}

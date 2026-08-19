@@ -1,0 +1,353 @@
+{
+  "item": [
+    {
+      "id": "513e922f-0253-4a2f-a00b-0c7ba70b1814",
+      "name": "Search",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1d655752-b2e7-4f42-a18f-845a7751707b",
+          "name": "Search search",
+          "request": {
+            "name": "Search search",
+            "description": {},
+            "url": {
+              "path": [
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fq",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "fq",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "geo_point",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "geo_radius",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "metadata_fields",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "metadata_fields",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "order",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "query_entities",
+                  "value": "true"
+                },
+                {
+                  "disabled": false,
+                  "key": "search_service",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_api_urls",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_collections",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_entity_ids",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_facets",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_relevance",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_type_counts",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "subtree",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "subtree",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "530bbff3-23aa-4da9-b323-d55cbf06ccc4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fq",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fq",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "geo_point",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "geo_radius",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "metadata_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "metadata_fields",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "order",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query_entities",
+                      "value": "true"
+                    },
+                    {
+                      "key": "search_service",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "show_api_urls",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "show_collections",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "show_entity_ids",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "show_facets",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "show_relevance",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "show_type_counts",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "subtree",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "subtree",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5785ef56-b025-4a39-bf98-d67e76443559",
+          "name": "Search get Search Engines",
+          "request": {
+            "name": "Search get Search Engines",
+            "description": {},
+            "url": {
+              "path": [
+                "search",
+                "services"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "80749ebd-178a-4dd6-90d0-98158cada813",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "services"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dataverse.nl/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "e360c030-c229-4ddd-bf1e-09e6ecb7d44d",
+    "name": "Dataverse Access Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Open source research data repository software. — DataverseNL installation (v6.9) hosting the Maastricht University research data collection (alias: maastricht). Spec retrieved live from https://dataverse.nl/openapi and saved faithfully as OpenAPI 3.0.3.",
+      "type": "text/plain"
+    }
+  }
+}

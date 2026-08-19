@@ -1,0 +1,180 @@
+{
+  "item": [
+    {
+      "id": "7b159e55-0cc7-4daa-95dc-d51b641125b8",
+      "name": "Metadatablocks",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "77d313b4-45c5-4b84-a530-8c16d841db68",
+          "name": "Metadata Blocks list Metadata Blocks",
+          "request": {
+            "name": "Metadata Blocks list Metadata Blocks",
+            "description": {},
+            "url": {
+              "path": [
+                "metadatablocks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "onlyDisplayedOnCreate",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "returnDatasetFieldTypes",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5d95b4f4-3335-46ef-a421-6c46a6425484",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadatablocks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "onlyDisplayedOnCreate",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "returnDatasetFieldTypes",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "44c9376a-e389-4d2f-af0c-6048c880320d",
+          "name": "Metadata Blocks get Metadata Block",
+          "request": {
+            "name": "Metadata Blocks get Metadata Block",
+            "description": {},
+            "url": {
+              "path": [
+                "metadatablocks",
+                ":identifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6a570fe6-b46a-459a-85ab-c0aee199e64c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metadatablocks",
+                    ":identifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dataverse.nl/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "84a1a350-cfe6-4ee3-b287-570921c0afd9",
+    "name": "Dataverse Access Metadatablocks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Open source research data repository software. — DataverseNL installation (v6.9) hosting the Maastricht University research data collection (alias: maastricht). Spec retrieved live from https://dataverse.nl/openapi and saved faithfully as OpenAPI 3.0.3.",
+      "type": "text/plain"
+    }
+  }
+}

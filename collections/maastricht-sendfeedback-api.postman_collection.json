@@ -1,0 +1,87 @@
+{
+  "item": [
+    {
+      "id": "739fba85-08fb-4e96-a895-3dc5ae055a43",
+      "name": "Sendfeedback",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a7803462-834e-42c7-a570-918b961fa776",
+          "name": "Send Feedback API submit Feedback",
+          "request": {
+            "name": "Send Feedback API submit Feedback",
+            "description": {},
+            "url": {
+              "path": [
+                "sendfeedback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "51aedfea-42a5-4df1-b566-879a9fd61175",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sendfeedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://dataverse.nl/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "90b68335-6f98-4f93-89ce-b3406f095a47",
+    "name": "Dataverse Access Sendfeedback API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Open source research data repository software. — DataverseNL installation (v6.9) hosting the Maastricht University research data collection (alias: maastricht). Spec retrieved live from https://dataverse.nl/openapi and saved faithfully as OpenAPI 3.0.3.",
+      "type": "text/plain"
+    }
+  }
+}

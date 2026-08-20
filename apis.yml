@@ -72,6 +72,12 @@ apis:
     explorers. These are open-source projects rather than a hosted institutional API program.
   humanURL: https://github.com/MaastrichtU-IDS
   tags:
+  - Open-Source
+  - Data Science
+  - Semantic Web
+  - SPARQL
+  - GitHub
+  tags_raw:
   - Open Source
   - Data Science
   - Semantic Web
@@ -565,6 +571,8 @@ apis:
   humanURL: https://cris.maastrichtuniversity.nl/
   baseURL: https://cris.maastrichtuniversity.nl/ws/oai
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
@@ -973,6 +981,8 @@ apis:
   humanURL: https://cris.maastrichtuniversity.nl/
   baseURL: https://cris.maastrichtuniversity.nl/ws/oai
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
@@ -1108,7 +1118,8 @@ apis:
   description: Save Auxiliary File With Version
   humanURL: https://cris.maastrichtuniversity.nl/
   baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
+  tags: []
+  tags_raw:
   - saveAuxiliaryFileWithVersion
   properties:
   - type: OpenAPI
@@ -1210,7 +1221,8 @@ apis:
   description: Uploads a logo for a dataset
   humanURL: https://cris.maastrichtuniversity.nl/
   baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
+  tags: []
+  tags_raw:
   - uploadDatasetLogo
   properties:
   - type: OpenAPI
@@ -1245,6 +1257,8 @@ apis:
   humanURL: https://cris.maastrichtuniversity.nl/
   baseURL: https://cris.maastrichtuniversity.nl/ws/oai
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI

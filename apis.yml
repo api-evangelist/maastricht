@@ -13,6 +13,18 @@ description: >-
   public REST API), and the Maastricht University Institute of Data Science maintains
   an active open-source GitHub organization. Identity is federated via Shibboleth/SAML.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: unknown
@@ -1322,6 +1334,9 @@ apis:
   - type: x-json-ld
     url: json-ld/maastricht-context.jsonld
 common:
+  - type: CapabilityMap
+    url: capabilities/maastricht-capability-edges.yml
+    name: Maastricht University Business Capability Map
   - type: AgenticAccess
     url: agentic-access/maastricht-agentic-access.yml
   - type: VulnerabilityDisclosure

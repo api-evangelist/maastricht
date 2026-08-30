@@ -2,86 +2,172 @@
 aid: maastricht
 name: Maastricht University
 description: >-
-  Maastricht University (UM) is an international research university in Maastricht,
-  Netherlands, known for its Problem-Based Learning model and ranked #230 in the QS
-  World University Rankings 2025. UM does not operate a unified public developer
-  portal; its confirmed machine-readable footprint consists of standards-based
-  research-infrastructure interfaces rather than a productized API program. The
-  Pure (Elsevier) current research information system at cris.maastrichtuniversity.nl
-  exposes a live OAI-PMH endpoint serving OpenAIRE CERIF metadata, research data is
-  published through the shared DataverseNL platform (a Dataverse instance with a
-  public REST API), and the Maastricht University Institute of Data Science maintains
-  an active open-source GitHub organization. Identity is federated via Shibboleth/SAML.
+  Maastricht University (UM) is a public research university in Maastricht, Netherlands, founded in
+  1976 and known internationally for its Problem-Based Learning model. Measured honestly, UM
+  operates no API programme: there is no developer portal, no api.maastrichtuniversity.nl, no
+  status page, no published versioning or deprecation policy, and no first-party OpenAPI anywhere
+  on its estate. What it does operate is a small set of standards-based surfaces on its own domain
+  — a live, keyless OAI-PMH 2.0 harvesting endpoint at cris.maastrichtuniversity.nl serving 798,420
+  records across six metadata profiles including OpenAIRE CERIF 1.2 with resolvable ORCID iDs; a
+  self-hosted GitLab whose REST API answers unauthenticated project queries; and its own ADFS
+  identity provider publishing both OpenID Connect discovery and signed SAML 2.0 federation
+  metadata, with its entity carried in SURFconext and thereby eduGAIN. Everything else that looks
+  like a Maastricht API is a purchase: research data lives in a collection inside the shared
+  national DataverseNL installation, the CRIS is Elsevier Pure, the LMS is Instructure Canvas, and
+  library discovery is OCLC WorldCat. Those are recorded here as tenant relationships, not as
+  Maastricht's engineering.
 type: Index
+x-type: university
+x-category: Public Research University
 deliveryModel:
-  model: saas
+  model: self-hosted
   open_source: false
-  commercial: true
+  commercial: false
   callable_host: true
-  label: Hosted service · you call their endpoint
+  label: Institution-operated endpoints · no commercial API product
   confidence: high
   source:
-  - openapi
-  - pricing
-  generated: '2026-08-28'
-  method: derived
+  - probed
+  generated: '2026-08-30'
+  method: probed
 accessModel:
   pricing: free
-  onboarding: unknown
+  onboarding: none
   trial: false
-  try_now: false
-  public: false
-  label: Free
-  confidence: medium
+  try_now: true
+  public: true
+  label: Free and keyless where public; institutional affiliation where not
+  confidence: high
   source:
-  - plans
-  generated: '2026-07-22'
-  method: derived
+  - probed
+  generated: '2026-08-30'
+  method: probed
 position: Consumer
-access: 3rd-Party
+access: Public
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/maastricht.png
 url: https://raw.githubusercontent.com/api-evangelist/maastricht/refs/heads/main/apis.yml
 tags:
-  - Education
-  - Higher Education
-  - University
-  - Research
-  - Open Data
-  - Netherlands
-  - Europe
+- University
+- Higher Education
+- Education
+- Netherlands
+- Europe
+- Research Data
+- Research Repository
+- Identity Federation
+- OAI-PMH
+- Open Access
+- Public Research University
 created: '2026-06-03'
-modified: '2026-06-03'
-# modified bumped 2026-06-03 after adding machine-readable artifacts for the DataverseNL API
+modified: '2026-08-30'
 specificationVersion: '0.23'
 apis:
-- aid: maastricht:cris-oai-pmh
-  name: Maastricht University Research Portal (Pure) OAI-PMH
+- aid: maastricht:oai-pmh
+  name: Maastricht University Research Portal OAI-PMH
+  x-operator: institution
   description: >-
-    OAI-PMH metadata harvesting endpoint for the Maastricht University Pure (Elsevier) current research
-    information system. Verified live, returning OpenAIRE CERIF 1.2 profile metadata for publications,
-    datasets, and other research outputs. Standard OAI-PMH verbs (Identify, ListMetadataFormats, ListRecords,
-    etc.) are supported.
+    Keyless OAI-PMH 2.0 metadata harvesting endpoint operated by Maastricht University on its own
+    domain. Verified live 2026-08-30: all six verbs return 200, six metadata profiles are offered
+    (oai_dc, qdc, mods, nl_didl, xmetadiss, oai_cerif_openaire), sets follow the OpenAIRE CRIS
+    entity model plus year-partitioned and withFiles publication sets, and ListIdentifiers reports a
+    completeListSize of 798,420. The repository self-identifies as "Maastricht University OAI
+    Repository" with adminEmail ub-pure@maastrichtuniversity.nl. The CRIS software underneath is
+    Elsevier Pure, but this harvesting surface carries Maastricht's own sets, profiles and contact
+    and is served from maastrichtuniversity.nl, so it is treated as institution-operated. The
+    OpenAPI below is DERIVED by API Evangelist from live probes — Maastricht publishes none.
   humanURL: https://cris.maastrichtuniversity.nl/
   baseURL: https://cris.maastrichtuniversity.nl/ws/oai
   tags:
-  - Research
   - OAI-PMH
+  - Research
   - Metadata
-  - Pure
-  - CERIF
   - Repository
+  - CERIF
+  - ORCID
+  properties:
+  - type: OpenAPI
+    url: openapi/maastricht-oai-pmh-openapi.yml
+  - type: Documentation
+    url: https://www.openarchives.org/OAI/openarchivesprotocol.html
+  - type: Website
+    url: https://cris.maastrichtuniversity.nl/
+  - type: x-oai-pmh-identify
+    url: https://cris.maastrichtuniversity.nl/ws/oai?verb=Identify
+  - type: Conformance
+    url: conformance/maastricht-conformance.yml
+  - type: Errors
+    url: errors/maastricht-errors.yml
+  - type: Vocabulary
+    url: vocabulary/maastricht-vocabulary.yml
+  - type: x-example
+    url: examples/maastricht-oai-identify-example.xml
+  - type: x-example
+    url: examples/maastricht-oai-listmetadataformats-example.xml
+  - type: x-example
+    url: examples/maastricht-oai-badverb-example.xml
+- aid: maastricht:identity-federation
+  name: Maastricht University Identity Provider (ADFS / SURFconext / eduGAIN)
+  x-operator: institution
+  description: >-
+    Maastricht University runs its own identity provider on login.maastrichtuniversity.nl and
+    publishes two machine-readable discovery documents without authentication: an OpenID Connect
+    configuration (issuer https://login.maastrichtuniversity.nl/adfs, ten advertised scopes, JWKS,
+    RS256) and signed SAML 2.0 federation metadata served as application/samlmetadata+xml. The same
+    entityID appears in SURFconext's national IdP metadata with shibmd scopes maastrichtuniversity.nl
+    and unimaas.nl, which places it in eduGAIN. This is the one surface class universities operate by
+    definition and almost never appears in an API catalog. Client registration is not self-service;
+    relying-party trusts are provisioned by UM ICT Services.
+  humanURL: https://login.maastrichtuniversity.nl/adfs/.well-known/openid-configuration
+  baseURL: https://login.maastrichtuniversity.nl/adfs
+  tags:
+  - Identity
+  - SAML
+  - OpenID Connect
+  - Federation
+  - eduGAIN
+  - SURFconext
+  properties:
+  - type: IdentityFederation
+    url: https://login.maastrichtuniversity.nl/FederationMetadata/2007-06/FederationMetadata.xml
+  - type: Authentication
+    url: authentication/maastricht-authentication.yml
+  - type: OAuthScopes
+    url: scopes/maastricht-scopes.yml
+  - type: Documentation
+    url: https://login.maastrichtuniversity.nl/adfs/.well-known/openid-configuration
+  - type: x-example
+    url: examples/maastricht-adfs-openid-configuration-example.json
+- aid: maastricht:gitlab
+  name: Maastricht University GitLab
+  x-operator: institution
+  description: >-
+    Self-hosted GitLab instance on the university's own domain, serving UM research and teaching
+    projects. Its REST API v4 answers unauthenticated public-project queries — GET /api/v4/projects
+    returned 200 with real project JSON on 2026-08-30 — while /api/v4/version and /api/v4/metadata
+    return 401. Maastricht operates the deployment; GitLab authors the contract, so no OpenAPI is
+    saved under this institution. Recorded as the deployment, not the product.
+  humanURL: https://gitlab.maastrichtuniversity.nl/explore/projects
+  baseURL: https://gitlab.maastrichtuniversity.nl/api/v4
+  tags:
+  - Source Control
+  - GitLab
+  - Research Computing
+  - Self-Hosted
   properties:
   - type: Documentation
-    url: https://cris.maastrichtuniversity.nl/
-  - type: x-OAI-PMH
-    url: https://cris.maastrichtuniversity.nl/ws/oai?verb=Identify
+    url: https://gitlab.maastrichtuniversity.nl/help/api/rest/index.md
+  - type: Website
+    url: https://gitlab.maastrichtuniversity.nl/explore/projects
 - aid: maastricht:ids-github
   name: Maastricht University Institute of Data Science (Open Source)
+  x-operator: institution
   description: >-
-    The Maastricht University Institute of Data Science (IDS) maintains an active public GitHub organization
-    with open-source data-science tooling, including MOD-API conformance tooling, the Data Science Research
-    Infrastructure (DSRI) documentation, semantic web / SPARQL endpoint libraries, and cohort metadata
-    explorers. These are open-source projects rather than a hosted institutional API program.
+    The Institute of Data Science maintains an active public GitHub organization (220 public
+    repositories) with institution-authored open-source data-science tooling — RDF knowledge-graph
+    builders, rdflib-endpoint for deploying SPARQL endpoints, DSRI documentation and cohort
+    metadata explorers. Genuinely Maastricht's own engineering, published on a code host; the host
+    says nothing about authorship and the repositories say Maastricht. These are open-source
+    projects, not a hosted institutional API programme.
   humanURL: https://github.com/MaastrichtU-IDS
   tags:
   - Open-Source
@@ -100,1265 +186,296 @@ apis:
     url: https://github.com/MaastrichtU-IDS
   - type: Documentation
     url: https://dsri.maastrichtuniversity.nl/
-- aid: maastricht:maastricht-access-api
-  name: Maastricht University Access API
-  description: The Access API from Maastricht University — 23 operation(s) for access.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Access
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-access-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-addfilestodataset-api
-  name: Maastricht University addFilesToDataset API
-  description: Uploads a set of files to a dataset
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - addFilesToDataset
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-addfilestodataset-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-addfiletodataset-api
-  name: Maastricht University addFileToDataset API
-  description: Uploads a file for a dataset
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - addFileToDataset
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-addfiletodataset-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-addglobusfilestodataset-api
-  name: Maastricht University addGlobusFilesToDataset API
-  description: Uploads a Globus file for a dataset
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - addGlobusFilesToDataset
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-addglobusfilestodataset-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-admin-api
-  name: Maastricht University Admin API
-  description: The Admin API from Maastricht University — 127 operation(s) for admin.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Admin
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-admin-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-batch-api
-  name: Maastricht University Batch API
-  description: The Batch API from Maastricht University — 3 operation(s) for batch.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Batch
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-batch-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-builtin-users-api
-  name: Maastricht University Builtin Users API
-  description: The Builtin Users API from Maastricht University — 4 operation(s) for builtin users.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Builtin Users
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-builtin-users-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-datasetfields-api
-  name: Maastricht University Datasetfields API
-  description: The Datasetfields API from Maastricht University — 1 operation(s) for datasetfields.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Datasetfields
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-datasetfields-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-datasets-api
-  name: Maastricht University Datasets API
-  description: The Datasets API from Maastricht University — 101 operation(s) for datasets.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Datasets
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-datasets-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-datatags-api
-  name: Maastricht University Datatags API
-  description: The Datatags API from Maastricht University — 1 operation(s) for datatags.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Datatags
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-datatags-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-dataversefeatureditems-api
-  name: Maastricht University DataverseFeaturedItems API
+- aid: maastricht:datahub-github
+  name: DataHub Maastricht (Research IT) Open Source
+  x-operator: institution
   description: >-
-    The DataverseFeaturedItems API from Maastricht University — 1 operation(s) for dataversefeatureditems.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
+    DataHub is Maastricht University's own research data management service, built and maintained by
+    UM Research IT on an iRODS foundation. Its GitHub organization holds 38 institution-authored
+    repositories — iRODS rulesets, microservices, a PHP iRODS client, CEDAR parsing utilities and
+    SRAM-to-iRODS synchronisation. The Maastricht Data Repository front end at
+    mdr.datahubmaastricht.nl is a single-page application that returns HTTP 200 with an HTML shell
+    for every path probed, including /openapi.json and /api/schema/, so it exposes no public API.
+    The code is the surface; the service is not callable.
+  humanURL: https://datahubmaastricht.nl/
   tags:
-  - DataverseFeaturedItems
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-dataversefeatureditems-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-dataverses-api
-  name: Maastricht University Dataverses API
-  description: The Dataverses API from Maastricht University — 43 operation(s) for dataverses.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Dataverses
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-dataverses-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-edit-api
-  name: Maastricht University Edit API
-  description: The Edit API from Maastricht University — 1 operation(s) for edit.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Edit
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-edit-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-externaltools-api
-  name: Maastricht University ExternalTools API
-  description: The ExternalTools API from Maastricht University — 2 operation(s) for externaltools.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - ExternalTools
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-externaltools-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-files-api
-  name: Maastricht University Files API
-  description: The Files API from Maastricht University — 21 operation(s) for files.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - File
+  - Research Data
+  - iRODS
+  - Open-Source
+  - Research IT
   tags_raw:
-  - Files
+  - Research Data
+  - iRODS
+  - Open Source
+  - Research IT
   properties:
-  - type: OpenAPI
-    url: openapi/maastricht-files-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-harvest-api
-  name: Maastricht University Harvest API
-  description: The Harvest API from Maastricht University — 7 operation(s) for harvest.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Harvest
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-harvest-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-inbox-api
-  name: Maastricht University Inbox API
-  description: The Inbox API from Maastricht University — 1 operation(s) for inbox.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Inbox
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-inbox-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-info-api
-  name: Maastricht University Info API
-  description: The Info API from Maastricht University — 50 operation(s) for info.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Info
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-info-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-ingest-api
-  name: Maastricht University Ingest API
-  description: The Ingest API from Maastricht University — 1 operation(s) for ingest.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Ingest
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-ingest-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-licenses-api
-  name: Maastricht University Licenses API
-  description: The Licenses API from Maastricht University — 6 operation(s) for licenses.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Licenses
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-licenses-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-localcontexts-api
-  name: Maastricht University Localcontexts API
-  description: The Localcontexts API from Maastricht University — 2 operation(s) for localcontexts.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Localcontexts
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-localcontexts-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-logout-api
-  name: Maastricht University Logout API
-  description: The Logout API from Maastricht University — 1 operation(s) for logout.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Logout
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-logout-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-mail-api
-  name: Maastricht University Mail API
-  description: The Mail API from Maastricht University — 1 operation(s) for mail.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Mail
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-mail-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-meta-api
-  name: Maastricht University Meta API
-  description: The Meta API from Maastricht University — 2 operation(s) for meta.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Meta
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-meta-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-metadatablocks-api
-  name: Maastricht University Metadatablocks API
-  description: The Metadatablocks API from Maastricht University — 2 operation(s) for metadatablocks.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Metadatablocks
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-metadatablocks-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-mydata-api
-  name: Maastricht University Mydata API
-  description: The Mydata API from Maastricht University — 2 operation(s) for mydata.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Mydata
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-mydata-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-notifications-api
-  name: Maastricht University Notifications API
-  description: The Notifications API from Maastricht University — 8 operation(s) for notifications.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Notification
-  tags_raw:
-  - Notifications
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-notifications-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-pids-api
-  name: Maastricht University Pids API
-  description: The Pids API from Maastricht University — 6 operation(s) for pids.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Pids
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-pids-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-replacefilesindataset-api
-  name: Maastricht University replaceFilesInDataset API
-  description: Replace a file to a dataset
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - replaceFilesInDataset
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-replacefilesindataset-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-roles-api
-  name: Maastricht University Roles API
-  description: The Roles API from Maastricht University — 3 operation(s) for roles.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Roles
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-roles-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-saveauxiliaryfilewithversion-api
-  name: Maastricht University saveAuxiliaryFileWithVersion API
-  description: Save Auxiliary File With Version
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags: []
-  tags_raw:
-  - saveAuxiliaryFileWithVersion
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-saveauxiliaryfilewithversion-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-search-api
-  name: Maastricht University Search API
-  description: The Search API from Maastricht University — 2 operation(s) for search.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Search
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-search-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-sendfeedback-api
-  name: Maastricht University Sendfeedback API
-  description: The Sendfeedback API from Maastricht University — 1 operation(s) for sendfeedback.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Sendfeedback
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-sendfeedback-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-uploaddatasetlogo-api
-  name: Maastricht University uploadDatasetLogo API
-  description: Uploads a logo for a dataset
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags: []
-  tags_raw:
-  - uploadDatasetLogo
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-uploaddatasetlogo-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-users-api
-  name: Maastricht University Users API
-  description: The Users API from Maastricht University — 10 operation(s) for users.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - User
-  tags_raw:
-  - Users
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-users-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-- aid: maastricht:maastricht-workflows-api
-  name: Maastricht University Workflows API
-  description: The Workflows API from Maastricht University — 1 operation(s) for workflows.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - Workflows
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-workflows-api-openapi.yml
-  - type: Documentation
-    url: https://guides.dataverse.org/en/latest/api/
-  - type: Website
-    url: https://dataverse.nl/dataverse/maastricht
-  - type: x-json-schema
-    url: json-schema/maastricht-dataverse-schema.json
-  - type: x-json-schema
-    url: json-schema/maastricht-dataset-schema.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataverse-structure.json
-  - type: x-json-structure
-    url: json-structure/maastricht-dataset-structure.json
-  - type: x-example
-    url: examples/maastricht-getDataverse-example.json
-  - type: x-example
-    url: examples/maastricht-search-example.json
-  - type: x-example
-    url: examples/maastricht-version-example.json
-  - type: x-spectral-rules
-    url: rules/maastricht-rules.yml
-  - type: x-vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-json-ld
-    url: json-ld/maastricht-context.jsonld
-common:
-  - type: CapabilityMap
-    url: capabilities/maastricht-capability-edges.yml
-    name: Maastricht University Business Capability Map
-  - type: AgenticAccess
-    url: agentic-access/maastricht-agentic-access.yml
-  - type: VulnerabilityDisclosure
-    url: security/maastricht-vulnerability-disclosure.yml
-  - type: DomainSecurity
-    url: security/maastricht-domain-security.yml
-  - type: Website
-    url: https://www.maastrichtuniversity.nl/
   - type: GitHub
-    url: https://github.com/MaastrichtU-IDS
-  - type: LinkedIn
-    url: https://www.linkedin.com/school/maastricht-university/
-  - type: Authentication
-    url: https://login.maastrichtuniversity.nl/
-  - type: Plans
-    url: plans/maastricht-plans-pricing.yml
-  - type: RateLimits
-    url: rate-limits/maastricht-rate-limits.yml
-  - type: FinOps
-    url: finops/maastricht-finops.yml
-  - type: Review
-    url: review.yml
+    url: https://github.com/MaastrichtUniversity
+  - type: Website
+    url: https://datahubmaastricht.nl/
+  - type: ResearchRepository
+    url: https://mdr.datahubmaastricht.nl/
+- aid: maastricht:library-github
+  name: Maastricht University Library Open Source
+  x-operator: institution
+  description: >-
+    The University Library publishes 46 public repositories of research-data-management support
+    material, open training content and open-source software, including DataverseNL analysis tooling
+    and an Omeka S theme. Institution-authored code, not a hosted API.
+  humanURL: https://github.com/MaastrichtU-Library
+  tags:
+  - Library
+  - Open-Source
+  - Research Data Management
+  - Open Education
+  tags_raw:
+  - Library
+  - Open Source
+  - Research Data Management
+  - Open Education
+  properties:
+  - type: GitHub
+    url: https://github.com/MaastrichtU-Library
+  - type: Website
+    url: https://library.maastrichtuniversity.nl/
+- aid: maastricht:dataversenl
+  name: Maastricht University research data collection on DataverseNL
+  x-operator: tenant
+  description: >-
+    Maastricht University's published research data lives in a collection (alias "maastricht") inside
+    DataverseNL, the shared national Dataverse installation. There is no maastricht.dataverse.nl —
+    the relationship is a path-based collection on a multi-institution platform, which is a weaker
+    claim than a tenant subdomain, not a stronger one. The data and the DOIs (prefix 10.34894) are
+    Maastricht's; the REST contract is upstream Dataverse 6.9's and is shipped identically by at
+    least six other institutions in this catalog. The generic Dataverse specification and everything
+    derived from it were REMOVED from this repository on 2026-08-30 — thirty-six per-tag OpenAPIs,
+    seventy-three collections, and the schemas, structures, examples, rules, vocabulary, JSON-LD and
+    agentic-access files derived from them — because they described Dataverse's engineering, not
+    Maastricht's. Probing note: dataverse.nl serves an Anubis bot-challenge page to scripted clients
+    on every path including /api/info/version, so the API is live but unreadable without solving it.
+  humanURL: https://dataverse.nl/dataverse/maastricht
+  baseURL: https://dataverse.nl/api
+  tags:
+  - Research Data
+  - Dataverse
+  - Repository
+  - Tenant
+  - Netherlands
+  properties:
+  - type: ResearchRepository
+    url: https://dataverse.nl/dataverse/maastricht
+  - type: Documentation
+    url: https://guides.dataverse.org/en/latest/api/
+- aid: maastricht:pure-ws-api
+  name: Maastricht University Research Portal (Pure) REST API
+  x-operator: tenant
+  description: >-
+    The Elsevier Pure web service on the university's CRIS host. Its documentation page canonicalises
+    to https://api.elsevierpure.com/ws/api/documentation/index.html and /ws/api/524/openapi.yaml
+    returns 401, so the contract, the version numbering and the specification are all Elsevier's.
+    Maastricht is the tenant and the data is Maastricht's research record. Recorded as a
+    relationship; Elsevier's specification is deliberately not saved here.
+  humanURL: https://cris.maastrichtuniversity.nl/ws/api
+  baseURL: https://cris.maastrichtuniversity.nl/ws/api
+  tags:
+  - CRIS
+  - Pure
+  - Elsevier
+  - Research
+  - Tenant
+  properties:
+  - type: Documentation
+    url: https://cris.maastrichtuniversity.nl/ws/api
+  - type: Website
+    url: https://cris.maastrichtuniversity.nl/
+- aid: maastricht:canvas
+  name: Maastricht University Canvas LMS
+  x-operator: tenant
+  description: >-
+    Instructure Canvas tenant on the university's own hostname. GET /api/v1/accounts returned 401 on
+    2026-08-30, confirming a live Canvas REST API gated behind institutional credentials. Canvas
+    implies LTI capability, but no LTI platform registration or tool configuration document is
+    publicly readable, so no LTI conformance is credited. The contract is Instructure's.
+  humanURL: https://canvas.maastrichtuniversity.nl/
+  baseURL: https://canvas.maastrichtuniversity.nl/api/v1
+  tags:
+  - LMS
+  - Canvas
+  - Teaching
+  - Tenant
+  properties:
+  - type: Website
+    url: https://canvas.maastrichtuniversity.nl/
+  - type: Documentation
+    url: https://canvas.instructure.com/doc/api/
+- aid: maastricht:worldcat-discovery
+  name: Maastricht University Library discovery (OCLC WorldCat)
+  x-operator: tenant
+  description: >-
+    Library discovery runs on OCLC's hosted WorldCat Discovery under an institution-specific
+    subdomain. A textbook tenant: Maastricht's holdings, OCLC's platform and OCLC's API contract.
+    No institution-operated library API — no Alma, Primo, VuFind or Blacklight surface — was found on
+    any maastrichtuniversity.nl host.
+  humanURL: https://maastrichtuniversity.on.worldcat.org/discovery
+  tags:
+  - Library
+  - Discovery
+  - OCLC
+  - Tenant
+  properties:
+  - type: LibraryCatalog
+    url: https://maastrichtuniversity.on.worldcat.org/discovery
+  - type: Website
+    url: https://library.maastrichtuniversity.nl/
+common:
+- type: Website
+  url: https://www.maastrichtuniversity.nl/
+- type: GitHubOrganization
+  url: https://github.com/MaastrichtUniversity
+- type: GitHub
+  url: https://github.com/MaastrichtU-IDS
+- type: SourceCode
+  url: https://gitlab.maastrichtuniversity.nl/explore/projects
+- type: LinkedIn
+  url: https://www.linkedin.com/school/maastricht-university/
+- type: IdentityFederation
+  url: https://login.maastrichtuniversity.nl/FederationMetadata/2007-06/FederationMetadata.xml
+- type: Authentication
+  url: https://login.maastrichtuniversity.nl/adfs/.well-known/openid-configuration
+- type: ResearchRepository
+  url: https://dataverse.nl/dataverse/maastricht
+- type: LibraryCatalog
+  url: https://maastrichtuniversity.on.worldcat.org/discovery
+- type: ResearchComputing
+  url: https://dsri.maastrichtuniversity.nl/
+- type: AIPolicy
+  url: https://www.maastrichtuniversity.nl/news/policy-framework-generative-ai-officially-published
+- type: AITooling
+  url: https://www.maastrichtuniversity.nl/education/edlab/ai-education-maastricht-university
+- type: PrivacyPolicy
+  url: https://www.maastrichtuniversity.nl/privacy
+- type: TermsOfService
+  url: https://www.maastrichtuniversity.nl/disclaimer
+- type: Support
+  url: https://www.maastrichtuniversity.nl/contact
+- type: Blog
+  url: https://www.maastrichtuniversity.nl/news
+- type: Research
+  url: https://www.maastrichtuniversity.nl/research
+- type: Conformance
+  url: conformance/maastricht-conformance.yml
+- type: Authentication
+  url: authentication/maastricht-authentication.yml
+- type: OAuthScopes
+  url: scopes/maastricht-scopes.yml
+- type: Errors
+  url: errors/maastricht-errors.yml
+- type: Vocabulary
+  url: vocabulary/maastricht-vocabulary.yml
+- type: Lifecycle
+  url: lifecycle/maastricht-lifecycle.yml
+- type: CapabilityMap
+  url: capabilities/maastricht-capability-edges.yml
+- type: VulnerabilityDisclosure
+  url: security/maastricht-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/maastricht-domain-security.yml
+- type: Plans
+  url: plans/maastricht-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/maastricht-rate-limits.yml
+- type: FinOps
+  url: finops/maastricht-finops.yml
+- type: Review
+  url: review.yml
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com
+x-coverage:
+  state: covered
+  reason: covered
+  detail: >-
+    Maastricht University operates no API programme, and this profile now says so. What was
+    catalogued here on 2026-06-03 was upstream Dataverse's contract: one DataverseNL OpenAPI split
+    by refine-openapis into thirty-six per-tag specifications, each registered as a separate
+    "Maastricht University <tag> API" entry carrying a fabricated baseURL of
+    https://cris.maastrichtuniversity.nl/ws/oai — the Pure OAI-PMH endpoint, which is not a
+    Dataverse REST API and does not serve those paths. Thirty-six times the apparent footprint, on
+    a host that does not run the software, for a contract at least six other institutions in this
+    catalog also ship. All thirty-six, their seventy-three collections, and every schema, structure,
+    example, ruleset, vocabulary, JSON-LD context and agentic-access file derived from them were
+    removed on 2026-08-30.
+
+    What replaced them is smaller and real. Three institution-operated surfaces were verified live:
+    a keyless OAI-PMH 2.0 endpoint (six verbs, six metadata profiles, 798,420 records, ORCID iDs in
+    the CERIF person records), a self-hosted GitLab answering unauthenticated project queries, and
+    the university's own ADFS identity provider publishing OpenID Connect discovery and signed SAML
+    2.0 metadata that is carried into SURFconext and eduGAIN. Four purchases were re-labelled as
+    tenant relationships rather than deleted: DataverseNL, Elsevier Pure, Instructure Canvas and
+    OCLC WorldCat.
+
+    Absences confirmed by probe, not assumed: no api., data., open., developer., developers.,
+    sis., portal. or status. host resolves under maastrichtuniversity.nl; no course catalog,
+    timetable or registrar API; no CKAN or Socrata open-data portal; no institution-operated library
+    API. mdr.datahubmaastricht.nl returns HTTP 200 with an SPA shell on every path including
+    /openapi.json, which is a soft-200, not an API. dataverse.nl serves an Anubis bot-challenge to
+    scripted clients on every path — live, but unreadable without solving the challenge, and a
+    vendor's surface regardless.
+  evidence:
+  - url: https://cris.maastrichtuniversity.nl/ws/oai?verb=Identify
+    status: 200
+  - url: https://cris.maastrichtuniversity.nl/ws/oai?verb=ListMetadataFormats
+    status: 200
+  - url: https://cris.maastrichtuniversity.nl/ws/oai?verb=ListSets
+    status: 200
+  - url: https://cris.maastrichtuniversity.nl/ws/oai?verb=ListIdentifiers&metadataPrefix=oai_dc
+    status: 200
+  - url: https://cris.maastrichtuniversity.nl/ws/oai?verb=Bogus
+    status: 200
+  - url: https://login.maastrichtuniversity.nl/adfs/.well-known/openid-configuration
+    status: 200
+  - url: https://login.maastrichtuniversity.nl/FederationMetadata/2007-06/FederationMetadata.xml
+    status: 200
+  - url: https://metadata.surfconext.nl/idps-metadata.xml
+    status: 200
+  - url: https://gitlab.maastrichtuniversity.nl/api/v4/projects?per_page=1
+    status: 200
+  - url: https://gitlab.maastrichtuniversity.nl/api/v4/version
+    status: 401
+  - url: https://canvas.maastrichtuniversity.nl/api/v1/accounts
+    status: 401
+  - url: https://cris.maastrichtuniversity.nl/ws/api/524/openapi.yaml
+    status: 401
+  - url: https://dataverse.nl/api/info/version
+    status: 200
+  - url: https://mdr.datahubmaastricht.nl/openapi.json
+    status: 200
+  - url: https://maastrichtuniversity.on.worldcat.org/discovery
+    status: 200
+  - url: https://www.maastrichtuniversity.nl/.well-known/security.txt
+    status: 200
+  - url: https://api.maastrichtuniversity.nl/
+    status: 0
+  - url: https://data.maastrichtuniversity.nl/
+    status: 0
+  - url: https://developer.maastrichtuniversity.nl/
+    status: 0
+  - url: https://status.maastrichtuniversity.nl/
+    status: 0
+  generated: '2026-08-30'
+  method: probed
+x-enrichment:
+  pipeline: pipeline-university.md
+  run: '2026-08-30'
+  previous_run: '2026-06-03'
+  operator_axis_applied: true
+  institution_surfaces: 6
+  tenant_surfaces: 4
+  vendor_contracts_removed: 1
+  files_removed: 123
+  apis_entries_before: 38
+  apis_entries_after: 10
+  note: >-
+    A correct re-profile of a vendor-attributed institution LOWERS its score. Contract volume fell
+    from thirty-six specifications to one, and the one that remains is DERIVED by API Evangelist
+    from live probes rather than published by Maastricht. That is the pipeline working.

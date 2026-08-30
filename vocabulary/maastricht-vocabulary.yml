@@ -1,0 +1,75 @@
+vocabulary:
+  name: Maastricht University Research Portal OAI-PMH Vocabulary
+  provider: Maastricht University
+  providerId: maastricht
+  generated: '2026-08-30'
+  method: derived
+  source: >-
+    Live responses from https://cris.maastrichtuniversity.nl/ws/oai (Identify,
+    ListMetadataFormats, ListSets, ListIdentifiers) on 2026-08-30.
+  version: '1.0.0'
+  description: >-
+    Terms actually emitted by the institution-operated OAI-PMH endpoint at Maastricht University.
+    Scoped deliberately to what this repository serves — the generic OAI-PMH protocol vocabulary
+    belongs to the Open Archives Initiative and the CERIF profile belongs to OpenAIRE/euroCRIS.
+  terms:
+  - term: Maastricht University OAI Repository
+    definition: >-
+      The repositoryName this endpoint returns from ?verb=Identify. Administrative contact
+      ub-pure@maastrichtuniversity.nl, earliest datestamp 2016-03-29T11:56:37Z.
+    tags: [repository, identity]
+  - term: oai_cerif_openaire
+    definition: >-
+      The OpenAIRE CERIF 1.2 metadata profile, the richest format this repository serves. Validates
+      against https://www.openaire.eu/schema/cris/1.2/openaire-cerif-profile.xsd and carries
+      structured Person, OrgUnit, Publication, Patent, Event, Equipment and Product entities.
+    tags: [metadata-format, cerif, openaire]
+  - term: oai_dc
+    definition: Simple Dublin Core, the OAI-PMH mandatory baseline format.
+    tags: [metadata-format, dublin-core]
+  - term: qdc
+    definition: Qualified Dublin Core.
+    tags: [metadata-format, dublin-core]
+  - term: nl_didl
+    definition: >-
+      The Dutch DIDL profile used by the national academic-repository infrastructure (NARCIS /
+      OpenAIRE-NL lineage). Its presence is a Netherlands-specific signal.
+    tags: [metadata-format, netherlands]
+  - term: mods
+    definition: Metadata Object Description Schema.
+    tags: [metadata-format]
+  - term: xmetadiss
+    definition: The German dissertation metadata profile, served for theses.
+    tags: [metadata-format, theses]
+  - term: openaire_cris_publications
+    definition: OpenAIRE CRIS set of publication records. The largest set on this repository.
+    tags: [set, publications]
+  - term: openaire_cris_persons
+    definition: >-
+      OpenAIRE CRIS set of researcher records. Carries resolvable ORCID iDs as <cerif:ORCID>.
+    tags: [set, people, orcid]
+  - term: openaire_cris_orgunits
+    definition: OpenAIRE CRIS set of organisational units — faculties, departments, institutes.
+    tags: [set, organisation]
+  - term: openaire_cris_patents
+    definition: OpenAIRE CRIS set of patent records.
+    tags: [set, patents]
+  - term: openaire_cris_products
+    definition: OpenAIRE CRIS set of research products, including datasets and software.
+    tags: [set, products]
+  - term: openaire_cris_events
+    definition: OpenAIRE CRIS set of research events.
+    tags: [set, events]
+  - term: openaire_cris_equipments
+    definition: OpenAIRE CRIS set of research equipment records.
+    tags: [set, equipment]
+  - term: 'publications:withFiles'
+    definition: >-
+      Year-partitioned publication sets are additionally offered in a withFiles variant, restricting
+      the listing to records with attached full text. A genuine open-access harvesting affordance.
+    tags: [set, open-access]
+  - term: resumptionToken
+    definition: >-
+      Flow-control token. This repository returns it with cursor and completeListSize attributes;
+      completeListSize was 798420 for ListIdentifiers/oai_dc on 2026-08-30.
+    tags: [pagination, flow-control]

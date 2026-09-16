@@ -62,61 +62,18 @@ created: '2026-06-03'
 modified: '2026-08-30'
 specificationVersion: '0.23'
 apis:
-- aid: maastricht:oai-pmh
-  name: Maastricht University Research Portal OAI-PMH
-  x-operator: institution
-  description: >-
-    Keyless OAI-PMH 2.0 metadata harvesting endpoint operated by Maastricht University on its own
-    domain. Verified live 2026-08-30: all six verbs return 200, six metadata profiles are offered
-    (oai_dc, qdc, mods, nl_didl, xmetadiss, oai_cerif_openaire), sets follow the OpenAIRE CRIS
-    entity model plus year-partitioned and withFiles publication sets, and ListIdentifiers reports a
-    completeListSize of 798,420. The repository self-identifies as "Maastricht University OAI
-    Repository" with adminEmail ub-pure@maastrichtuniversity.nl. The CRIS software underneath is
-    Elsevier Pure, but this harvesting surface carries Maastricht's own sets, profiles and contact
-    and is served from maastrichtuniversity.nl, so it is treated as institution-operated. The
-    OpenAPI below is DERIVED by API Evangelist from live probes — Maastricht publishes none.
-  humanURL: https://cris.maastrichtuniversity.nl/
-  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
-  tags:
-  - OAI-PMH
-  - Research
-  - Metadata
-  - Repository
-  - CERIF
-  - ORCID
-  properties:
-  - type: OpenAPI
-    url: openapi/maastricht-oai-pmh-openapi.yml
-  - type: Documentation
-    url: https://www.openarchives.org/OAI/openarchivesprotocol.html
-  - type: Website
-    url: https://cris.maastrichtuniversity.nl/
-  - type: x-oai-pmh-identify
-    url: https://cris.maastrichtuniversity.nl/ws/oai?verb=Identify
-  - type: Conformance
-    url: conformance/maastricht-conformance.yml
-  - type: Errors
-    url: errors/maastricht-errors.yml
-  - type: Vocabulary
-    url: vocabulary/maastricht-vocabulary.yml
-  - type: x-example
-    url: examples/maastricht-oai-identify-example.xml
-  - type: x-example
-    url: examples/maastricht-oai-listmetadataformats-example.xml
-  - type: x-example
-    url: examples/maastricht-oai-badverb-example.xml
 - aid: maastricht:identity-federation
   name: Maastricht University Identity Provider (ADFS / SURFconext / eduGAIN)
   x-operator: institution
   description: >-
-    Maastricht University runs its own identity provider on login.maastrichtuniversity.nl and
-    publishes two machine-readable discovery documents without authentication: an OpenID Connect
-    configuration (issuer https://login.maastrichtuniversity.nl/adfs, ten advertised scopes, JWKS,
-    RS256) and signed SAML 2.0 federation metadata served as application/samlmetadata+xml. The same
-    entityID appears in SURFconext's national IdP metadata with shibmd scopes maastrichtuniversity.nl
-    and unimaas.nl, which places it in eduGAIN. This is the one surface class universities operate by
-    definition and almost never appears in an API catalog. Client registration is not self-service;
-    relying-party trusts are provisioned by UM ICT Services.
+    Maastricht University runs its own identity provider on login.maastrichtuniversity.nl and publishes
+    two machine-readable discovery documents without authentication: an OpenID Connect configuration (issuer
+    https://login.maastrichtuniversity.nl/adfs, ten advertised scopes, JWKS, RS256) and signed SAML 2.0
+    federation metadata served as application/samlmetadata+xml. The same entityID appears in SURFconext's
+    national IdP metadata with shibmd scopes maastrichtuniversity.nl and unimaas.nl, which places it in
+    eduGAIN. This is the one surface class universities operate by definition and almost never appears
+    in an API catalog. Client registration is not self-service; relying-party trusts are provisioned by
+    UM ICT Services.
   humanURL: https://login.maastrichtuniversity.nl/adfs/.well-known/openid-configuration
   baseURL: https://login.maastrichtuniversity.nl/adfs
   tags:
@@ -141,11 +98,11 @@ apis:
   name: Maastricht University GitLab
   x-operator: institution
   description: >-
-    Self-hosted GitLab instance on the university's own domain, serving UM research and teaching
-    projects. Its REST API v4 answers unauthenticated public-project queries — GET /api/v4/projects
-    returned 200 with real project JSON on 2026-08-30 — while /api/v4/version and /api/v4/metadata
-    return 401. Maastricht operates the deployment; GitLab authors the contract, so no OpenAPI is
-    saved under this institution. Recorded as the deployment, not the product.
+    Self-hosted GitLab instance on the university's own domain, serving UM research and teaching projects.
+    Its REST API v4 answers unauthenticated public-project queries — GET /api/v4/projects returned 200
+    with real project JSON on 2026-08-30 — while /api/v4/version and /api/v4/metadata return 401. Maastricht
+    operates the deployment; GitLab authors the contract, so no OpenAPI is saved under this institution.
+    Recorded as the deployment, not the product.
   humanURL: https://gitlab.maastrichtuniversity.nl/explore/projects
   baseURL: https://gitlab.maastrichtuniversity.nl/api/v4
   tags:
@@ -162,12 +119,11 @@ apis:
   name: Maastricht University Institute of Data Science (Open Source)
   x-operator: institution
   description: >-
-    The Institute of Data Science maintains an active public GitHub organization (220 public
-    repositories) with institution-authored open-source data-science tooling — RDF knowledge-graph
-    builders, rdflib-endpoint for deploying SPARQL endpoints, DSRI documentation and cohort
-    metadata explorers. Genuinely Maastricht's own engineering, published on a code host; the host
-    says nothing about authorship and the repositories say Maastricht. These are open-source
-    projects, not a hosted institutional API programme.
+    The Institute of Data Science maintains an active public GitHub organization (220 public repositories)
+    with institution-authored open-source data-science tooling — RDF knowledge-graph builders, rdflib-endpoint
+    for deploying SPARQL endpoints, DSRI documentation and cohort metadata explorers. Genuinely Maastricht's
+    own engineering, published on a code host; the host says nothing about authorship and the repositories
+    say Maastricht. These are open-source projects, not a hosted institutional API programme.
   humanURL: https://github.com/MaastrichtU-IDS
   tags:
   - Open-Source
@@ -190,13 +146,12 @@ apis:
   name: DataHub Maastricht (Research IT) Open Source
   x-operator: institution
   description: >-
-    DataHub is Maastricht University's own research data management service, built and maintained by
-    UM Research IT on an iRODS foundation. Its GitHub organization holds 38 institution-authored
-    repositories — iRODS rulesets, microservices, a PHP iRODS client, CEDAR parsing utilities and
-    SRAM-to-iRODS synchronisation. The Maastricht Data Repository front end at
-    mdr.datahubmaastricht.nl is a single-page application that returns HTTP 200 with an HTML shell
-    for every path probed, including /openapi.json and /api/schema/, so it exposes no public API.
-    The code is the surface; the service is not callable.
+    DataHub is Maastricht University's own research data management service, built and maintained by UM
+    Research IT on an iRODS foundation. Its GitHub organization holds 38 institution-authored repositories
+    — iRODS rulesets, microservices, a PHP iRODS client, CEDAR parsing utilities and SRAM-to-iRODS synchronisation.
+    The Maastricht Data Repository front end at mdr.datahubmaastricht.nl is a single-page application
+    that returns HTTP 200 with an HTML shell for every path probed, including /openapi.json and /api/schema/,
+    so it exposes no public API. The code is the surface; the service is not callable.
   humanURL: https://datahubmaastricht.nl/
   tags:
   - Research Data
@@ -219,9 +174,9 @@ apis:
   name: Maastricht University Library Open Source
   x-operator: institution
   description: >-
-    The University Library publishes 46 public repositories of research-data-management support
-    material, open training content and open-source software, including DataverseNL analysis tooling
-    and an Omeka S theme. Institution-authored code, not a hosted API.
+    The University Library publishes 46 public repositories of research-data-management support material,
+    open training content and open-source software, including DataverseNL analysis tooling and an Omeka
+    S theme. Institution-authored code, not a hosted API.
   humanURL: https://github.com/MaastrichtU-Library
   tags:
   - Library
@@ -243,16 +198,16 @@ apis:
   x-operator: tenant
   description: >-
     Maastricht University's published research data lives in a collection (alias "maastricht") inside
-    DataverseNL, the shared national Dataverse installation. There is no maastricht.dataverse.nl —
-    the relationship is a path-based collection on a multi-institution platform, which is a weaker
-    claim than a tenant subdomain, not a stronger one. The data and the DOIs (prefix 10.34894) are
-    Maastricht's; the REST contract is upstream Dataverse 6.9's and is shipped identically by at
-    least six other institutions in this catalog. The generic Dataverse specification and everything
-    derived from it were REMOVED from this repository on 2026-08-30 — thirty-six per-tag OpenAPIs,
-    seventy-three collections, and the schemas, structures, examples, rules, vocabulary, JSON-LD and
-    agentic-access files derived from them — because they described Dataverse's engineering, not
-    Maastricht's. Probing note: dataverse.nl serves an Anubis bot-challenge page to scripted clients
-    on every path including /api/info/version, so the API is live but unreadable without solving it.
+    DataverseNL, the shared national Dataverse installation. There is no maastricht.dataverse.nl — the
+    relationship is a path-based collection on a multi-institution platform, which is a weaker claim than
+    a tenant subdomain, not a stronger one. The data and the DOIs (prefix 10.34894) are Maastricht's;
+    the REST contract is upstream Dataverse 6.9's and is shipped identically by at least six other institutions
+    in this catalog. The generic Dataverse specification and everything derived from it were REMOVED from
+    this repository on 2026-08-30 — thirty-six per-tag OpenAPIs, seventy-three collections, and the schemas,
+    structures, examples, rules, vocabulary, JSON-LD and agentic-access files derived from them — because
+    they described Dataverse's engineering, not Maastricht's. Probing note: dataverse.nl serves an Anubis
+    bot-challenge page to scripted clients on every path including /api/info/version, so the API is live
+    but unreadable without solving it.
   humanURL: https://dataverse.nl/dataverse/maastricht
   baseURL: https://dataverse.nl/api
   tags:
@@ -271,10 +226,10 @@ apis:
   x-operator: tenant
   description: >-
     The Elsevier Pure web service on the university's CRIS host. Its documentation page canonicalises
-    to https://api.elsevierpure.com/ws/api/documentation/index.html and /ws/api/524/openapi.yaml
-    returns 401, so the contract, the version numbering and the specification are all Elsevier's.
-    Maastricht is the tenant and the data is Maastricht's research record. Recorded as a
-    relationship; Elsevier's specification is deliberately not saved here.
+    to https://api.elsevierpure.com/ws/api/documentation/index.html and /ws/api/524/openapi.yaml returns
+    401, so the contract, the version numbering and the specification are all Elsevier's. Maastricht is
+    the tenant and the data is Maastricht's research record. Recorded as a relationship; Elsevier's specification
+    is deliberately not saved here.
   humanURL: https://cris.maastrichtuniversity.nl/ws/api
   baseURL: https://cris.maastrichtuniversity.nl/ws/api
   tags:
@@ -292,10 +247,10 @@ apis:
   name: Maastricht University Canvas LMS
   x-operator: tenant
   description: >-
-    Instructure Canvas tenant on the university's own hostname. GET /api/v1/accounts returned 401 on
-    2026-08-30, confirming a live Canvas REST API gated behind institutional credentials. Canvas
-    implies LTI capability, but no LTI platform registration or tool configuration document is
-    publicly readable, so no LTI conformance is credited. The contract is Instructure's.
+    Instructure Canvas tenant on the university's own hostname. GET /api/v1/accounts returned 401 on 2026-08-30,
+    confirming a live Canvas REST API gated behind institutional credentials. Canvas implies LTI capability,
+    but no LTI platform registration or tool configuration document is publicly readable, so no LTI conformance
+    is credited. The contract is Instructure's.
   humanURL: https://canvas.maastrichtuniversity.nl/
   baseURL: https://canvas.maastrichtuniversity.nl/api/v1
   tags:
@@ -312,10 +267,10 @@ apis:
   name: Maastricht University Library discovery (OCLC WorldCat)
   x-operator: tenant
   description: >-
-    Library discovery runs on OCLC's hosted WorldCat Discovery under an institution-specific
-    subdomain. A textbook tenant: Maastricht's holdings, OCLC's platform and OCLC's API contract.
-    No institution-operated library API — no Alma, Primo, VuFind or Blacklight surface — was found on
-    any maastrichtuniversity.nl host.
+    Library discovery runs on OCLC's hosted WorldCat Discovery under an institution-specific subdomain.
+    A textbook tenant: Maastricht's holdings, OCLC's platform and OCLC's API contract. No institution-operated
+    library API — no Alma, Primo, VuFind or Blacklight surface — was found on any maastrichtuniversity.nl
+    host.
   humanURL: https://maastrichtuniversity.on.worldcat.org/discovery
   tags:
   - Library
@@ -327,6 +282,34 @@ apis:
     url: https://maastrichtuniversity.on.worldcat.org/discovery
   - type: Website
     url: https://library.maastrichtuniversity.nl/
+- aid: maastricht:maastricht-harvesting-api
+  name: Maastricht University Harvesting API
+  description: OAI-PMH 2.0 verbs. Every response is an application/xml OAI-PMH envelope.
+  humanURL: https://cris.maastrichtuniversity.nl/
+  baseURL: https://cris.maastrichtuniversity.nl/ws/oai
+  tags:
+  - Harvesting
+  properties:
+  - type: OpenAPI
+    url: openapi/maastricht-harvesting-api-openapi.yml
+  - type: Documentation
+    url: https://www.openarchives.org/OAI/openarchivesprotocol.html
+  - type: Website
+    url: https://cris.maastrichtuniversity.nl/
+  - type: x-oai-pmh-identify
+    url: https://cris.maastrichtuniversity.nl/ws/oai?verb=Identify
+  - type: Conformance
+    url: conformance/maastricht-conformance.yml
+  - type: Errors
+    url: errors/maastricht-errors.yml
+  - type: Vocabulary
+    url: vocabulary/maastricht-vocabulary.yml
+  - type: x-example
+    url: examples/maastricht-oai-identify-example.xml
+  - type: x-example
+    url: examples/maastricht-oai-listmetadataformats-example.xml
+  - type: x-example
+    url: examples/maastricht-oai-badverb-example.xml
 common:
 - type: Website
   url: https://www.maastrichtuniversity.nl/

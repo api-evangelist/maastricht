@@ -1,0 +1,93 @@
+provider: Maastricht University
+providerId: maastricht
+generated: '2026-08-30'
+method: probed
+source: >-
+  Live probes of cris.maastrichtuniversity.nl, login.maastrichtuniversity.nl and
+  metadata.surfconext.nl on 2026-08-30. No claim below is taken from prose.
+regime: education
+description: >-
+  Domain-standard conformance for Maastricht University, evaluated against the Kin Score
+  `education` regime standards list. REWARD-ONLY: only standards evidenced by a live
+  machine-readable response are recorded. Standards NOT found are listed separately and
+  explicitly, so absence is a measurement rather than a silence.
+standards:
+- standard: oai-pmh
+  name: Open Archives Initiative Protocol for Metadata Harvesting 2.0
+  status: conformant
+  confidence: high
+  operator: institution
+  evidence:
+    url: https://cris.maastrichtuniversity.nl/ws/oai?verb=Identify
+    status: 200
+    location: /OAI-PMH/Identify/protocolVersion
+    observed: >-
+      protocolVersion 2.0; repositoryName "Maastricht University OAI Repository"; adminEmail
+      ub-pure@maastrichtuniversity.nl; granularity YYYY-MM-DDThh:mm:ssZ; earliestDatestamp
+      2016-03-29T11:56:37Z. All six verbs (Identify, ListMetadataFormats, ListSets,
+      ListIdentifiers, ListRecords, GetRecord) returned 200 with a well-formed envelope, and
+      ?verb=Bogus returned the protocol error code badVerb.
+  artifact: openapi/maastricht-oai-pmh-openapi.yml
+- standard: orcid
+  name: ORCID researcher identifiers
+  status: conformant
+  confidence: high
+  operator: institution
+  evidence:
+    url: https://cris.maastrichtuniversity.nl/ws/oai?verb=ListRecords&metadataPrefix=oai_cerif_openaire&set=openaire_cris_persons
+    status: 200
+    location: /OAI-PMH/ListRecords/record/metadata/Person/cerif:ORCID
+    observed: >-
+      Resolvable ORCID iDs are emitted as first-class <cerif:ORCID> elements in the OpenAIRE CERIF
+      person records, e.g. https://orcid.org/0000-0003-2264-5689. Sampled from a live 127KB
+      ListRecords response on 2026-08-30.
+- standard: saml
+  name: SAML 2.0 Web Browser SSO
+  status: conformant
+  confidence: high
+  operator: institution
+  evidence:
+    url: https://login.maastrichtuniversity.nl/FederationMetadata/2007-06/FederationMetadata.xml
+    status: 200
+    location: /EntityDescriptor[@entityID="http://login.maastrichtuniversity.nl/adfs/services/trust"]
+    observed: >-
+      Signed SAML 2.0 metadata served as application/samlmetadata+xml from the institution's own
+      host. The same entityID is published in the Dutch national federation (SURFconext,
+      eduGAIN-connected) idps-metadata.xml with OrganizationName "Maastricht University".
+  artifact: authentication/maastricht-authentication.yml
+- standard: shibboleth
+  name: Shibboleth metadata profile (urn:mace:shibboleth:metadata:1.0)
+  status: partial
+  confidence: medium
+  operator: institution
+  evidence:
+    url: https://metadata.surfconext.nl/idps-metadata.xml
+    status: 200
+    location: /EntityDescriptor/IDPSSODescriptor/Extensions/shibmd:Scope
+    observed: >-
+      The Maastricht entity carries Shibboleth metadata-extension scopes
+      (shibmd:Scope maastrichtuniversity.nl and unimaas.nl). RECORDED AS PARTIAL ON PURPOSE: the
+      identity provider itself is Microsoft ADFS, not a Shibboleth IdP. What conforms is the
+      federation metadata profile, not the software.
+not_found:
+- standard: scim
+  detail: No SCIM 2.0 ServiceProviderConfig discovered on any institution host probed.
+- standard: lti
+  detail: >-
+    A Canvas LMS tenant exists at canvas.maastrichtuniversity.nl (401 on /api/v1/accounts), which
+    implies LTI capability, but no LTI tool configuration or platform registration document is
+    publicly readable. Instructure operates the contract; not credited to the institution.
+- standard: oneroster
+  detail: No OneRoster endpoint found.
+- standard: ed-fi
+  detail: No Ed-Fi endpoint found; Ed-Fi is a US K-12/state standard with no Dutch adoption path.
+- standard: caliper
+  detail: No Caliper analytics endpoint found.
+- standard: qti
+  detail: No QTI surface found.
+- standard: datacite
+  detail: >-
+    DOIs under the 10.34894 prefix are minted for Maastricht datasets, but through the shared
+    DataverseNL platform. The DataCite integration is the platform's, not the institution's.
+- standard: crossref
+  detail: No institution-operated Crossref deposit or query surface found.

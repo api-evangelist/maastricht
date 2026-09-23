@@ -1,0 +1,64 @@
+provider: Maastricht University
+providerId: maastricht
+generated: '2026-08-30'
+method: probed
+source: https://cris.maastrichtuniversity.nl/ws/oai?verb=Bogus
+api: Maastricht University Research Portal OAI-PMH
+description: >-
+  Error behaviour of the one keyless institution-operated API surface Maastricht University runs.
+  The critical operational fact, confirmed live: OAI-PMH returns protocol errors inside an HTTP
+  200 response. A consumer that trusts the status code alone will read a badVerb or
+  cannotDisseminateFormat failure as a success.
+transport:
+  success_status: 200
+  error_status: 200
+  content_type: application/xml
+  note: >-
+    Verified 2026-08-30 — ?verb=Bogus returned HTTP 200 carrying <error code="badVerb">.
+errors:
+- code: badVerb
+  http_status: 200
+  confirmed: probed
+  evidence: https://cris.maastrichtuniversity.nl/ws/oai?verb=Bogus
+  example: examples/maastricht-oai-badverb-example.xml
+  detail: Value of the verb argument is not a legal OAI-PMH verb, is missing, or is repeated.
+- code: badArgument
+  http_status: 200
+  confirmed: protocol
+  detail: Illegal, missing or repeated argument for the given verb. OAI-PMH 2.0 defined; not provoked.
+- code: badResumptionToken
+  http_status: 200
+  confirmed: protocol
+  detail: resumptionToken is invalid or expired. OAI-PMH 2.0 defined; not provoked.
+- code: cannotDisseminateFormat
+  http_status: 200
+  confirmed: protocol
+  detail: metadataPrefix is not supported by the repository or by the requested item.
+- code: idDoesNotExist
+  http_status: 200
+  confirmed: protocol
+  detail: The identifier is unknown or illegal in this repository.
+- code: noRecordsMatch
+  http_status: 200
+  confirmed: protocol
+  detail: The from/until/set/metadataPrefix combination selects an empty list.
+- code: noMetadataFormats
+  http_status: 200
+  confirmed: protocol
+  detail: No metadata formats available for the specified item.
+- code: noSetHierarchy
+  http_status: 200
+  confirmed: protocol
+  detail: The repository does not support sets. Not applicable here — this repository does support sets.
+other_surfaces:
+- surface: https://cris.maastrichtuniversity.nl/ws/api/524/openapi.yaml
+  status: 401
+  operator: tenant
+  detail: Elsevier Pure REST API. Key-gated; error vocabulary is Elsevier's, not recorded here.
+- surface: https://dataverse.nl/api/
+  status: 200
+  operator: tenant
+  detail: >-
+    Returns an Anubis bot-challenge HTML page ("Beveiligde verbinding wordt gecontroleerd") rather
+    than JSON to a scripted client, on every path probed including /api/info/version. LIVE BUT
+    UNREADABLE to an automated consumer without a browser challenge solve.

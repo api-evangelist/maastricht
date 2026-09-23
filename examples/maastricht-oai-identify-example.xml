@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd https://www.openaire.eu/cerif-profile/1.2/ https://www.openaire.eu/schema/cris/1.2/openaire-cerif-profile.xsd">
+  <responseDate>2026-08-30T19:02:51Z</responseDate>
+  <request verb="Identify">https://cris.maastrichtuniversity.nl/ws/oai</request>
+  <Identify>
+    <repositoryName>Maastricht University OAI Repository</repositoryName>
+    <baseURL>https://cris.maastrichtuniversity.nl/ws/oai</baseURL>
+    <protocolVersion>2.0</protocolVersion>
+    <adminEmail>ub-pure@maastrichtuniversity.nl</adminEmail>
+    <earliestDatestamp>2016-03-29T11:56:37Z</earliestDatestamp>
+    <deletedRecord>no</deletedRecord>
+    <granularity>YYYY-MM-DDThh:mm:ssZ</granularity>
+    <description>
+      <rightsManifest xmlns="http://www.openarchives.org/OAI/2.0/rights/" appliesTo="http://www.openarchives.org/OAI/2.0/entity#metadata" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/rights/ http://www.openarchives.org/OAI/2.0/rightsManifest.xsd">
+        <rights>
+          <rightsDefinition>
+            <oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
+              <dc:title>Maastricht University Repository</dc:title>
+              <dc:creator>Maastricht University</dc:creator>
+              <dc:description>Copyright © 2018-2019 Maastricht University. All rights reserved. This repository shows validated research output of Maastricht University that are published or ahead of print.</dc:description>
+              <dc:identifier>urn:nbn:nl:ui:27-</dc:identifier>
+            </oai_dc:dc>
+          </rightsDefinition>
+        </rights>
+      </rightsManifest>
+    </description>
+    <description>
+      <Service xmlns="https://www.openaire.eu/cerif-profile/1.2/" id="cris.maastrichtuniversity.nl">
+        <Compatibility xmlns="https://www.openaire.eu/cerif-profile/vocab/OpenAIRE_Service_Compatibility">https://www.openaire.eu/cerif-profile/vocab/OpenAIRE_Service_Compatibility#1.2</Compatibility>
+        <Acronym>cris.maastrichtuniversity.nl</Acronym>
+        <Name xml:lang="en">Maastricht University OAI Repository</Name>
+        <Description xml:lang="en">Copyright © 2018-2019 Maastricht University. All rights reserved. This repository shows validated research output of Maastricht University that are published or ahead of print. This service is based on Pure.</Description>
+        <WebsiteURL>https://cris.maastrichtuniversity.nl/portal</WebsiteURL>
+        <OAIPMHBaseURL>https://cris.maastrichtuniversity.nl/ws/oai</OAIPMHBaseURL>
+      </Service>
+    </description>
+  </Identify>
+</OAI-PMH>

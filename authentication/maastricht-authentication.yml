@@ -1,0 +1,90 @@
+provider: Maastricht University
+providerId: maastricht
+generated: '2026-08-30'
+method: probed
+source: >-
+  https://login.maastrichtuniversity.nl/adfs/.well-known/openid-configuration (200),
+  https://login.maastrichtuniversity.nl/FederationMetadata/2007-06/FederationMetadata.xml (200),
+  https://metadata.surfconext.nl/idps-metadata.xml (200), all fetched 2026-08-30.
+description: >-
+  Authentication surfaces Maastricht University itself operates. The institution runs its own
+  identity provider (Microsoft ADFS) on its own registrable domain and publishes BOTH an OIDC
+  discovery document and signed SAML 2.0 federation metadata without authentication — a genuinely
+  machine-readable, institution-operated surface, and the one class of university API that is
+  almost never catalogued.
+surfaces:
+- id: adfs-oidc
+  name: Maastricht University ADFS — OpenID Connect discovery
+  operator: institution
+  protocol: OpenID Connect 1.0 / OAuth 2.0
+  issuer: https://login.maastrichtuniversity.nl/adfs
+  discovery: https://login.maastrichtuniversity.nl/adfs/.well-known/openid-configuration
+  status: 200
+  public: true
+  endpoints:
+    authorization: https://login.maastrichtuniversity.nl/adfs/oauth2/authorize/
+    token: https://login.maastrichtuniversity.nl/adfs/oauth2/token/
+    userinfo: https://login.maastrichtuniversity.nl/adfs/userinfo
+    jwks: https://login.maastrichtuniversity.nl/adfs/discovery/keys
+    end_session: https://login.maastrichtuniversity.nl/adfs/oauth2/logout
+  grant_types:
+  - authorization_code
+  - refresh_token
+  - client_credentials
+  - urn:ietf:params:oauth:grant-type:jwt-bearer
+  - urn:ietf:params:oauth:grant-type:device_code
+  - implicit
+  - password
+  token_endpoint_auth_methods:
+  - client_secret_post
+  - client_secret_basic
+  - private_key_jwt
+  - windows_client_authentication
+  id_token_signing_alg: [RS256]
+  frontchannel_logout_supported: true
+  registration: >-
+    Client registration is not self-service. There is no public dynamic-registration endpoint;
+    relying-party trusts are provisioned by UM ICT Services for institutionally affiliated
+    applications.
+- id: adfs-saml
+  name: Maastricht University ADFS — SAML 2.0 identity provider
+  operator: institution
+  protocol: SAML 2.0 Web Browser SSO
+  entity_id: http://login.maastrichtuniversity.nl/adfs/services/trust
+  metadata: https://login.maastrichtuniversity.nl/FederationMetadata/2007-06/FederationMetadata.xml
+  status: 200
+  content_type: application/samlmetadata+xml
+  public: true
+  name_id_formats:
+  - urn:oasis:names:tc:SAML:2.0:nameid-format:persistent
+  - urn:oasis:names:tc:SAML:2.0:nameid-format:transient
+- id: surfconext-federation
+  name: SURFconext / eduGAIN federation entry
+  operator: tenant
+  detail: >-
+    Maastricht's IdP entity is published in the Dutch national research-and-education federation
+    operated by SURF, which is connected to eduGAIN. SURF operates the federation and the proxy
+    (engine.surfconext.nl); Maastricht operates the entity inside it.
+  metadata: https://metadata.surfconext.nl/idps-metadata.xml
+  status: 200
+  scopes:
+  - maastrichtuniversity.nl
+  - unimaas.nl
+  display_name: Maastricht University
+  sso_location: https://engine.surfconext.nl/authentication/idp/single-sign-on/key:20230503/cce637f0ae222246ad62a8590d25fa9d
+- id: oai-anonymous
+  name: OAI-PMH harvesting — no authentication
+  operator: institution
+  protocol: none
+  detail: >-
+    https://cris.maastrichtuniversity.nl/ws/oai is keyless and requires no registration. All six
+    verbs returned 200 anonymously on 2026-08-30.
+- id: pure-ws-api
+  name: Pure REST API — key-gated
+  operator: tenant
+  protocol: api-key
+  detail: >-
+    https://cris.maastrichtuniversity.nl/ws/api returns Elsevier's Pure API documentation
+    (canonical https://api.elsevierpure.com/ws/api/documentation/index.html) and
+    /ws/api/524/openapi.yaml returns 401. The contract is Elsevier's; keys are issued by UM to
+    affiliated consumers. Not credited as an institution-authored API.

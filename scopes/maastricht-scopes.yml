@@ -1,0 +1,50 @@
+provider: Maastricht University
+providerId: maastricht
+generated: '2026-08-30'
+method: probed
+source: https://login.maastrichtuniversity.nl/adfs/.well-known/openid-configuration
+description: >-
+  OAuth 2.0 / OpenID Connect scopes advertised by the Maastricht University ADFS identity provider.
+  Read verbatim from the institution's own public discovery document on 2026-08-30 — not inferred
+  and not a vendor's default list. These govern access to UM-affiliated relying parties; they are
+  NOT scopes on a public data API, and Maastricht publishes no scoped public data API.
+api: Maastricht University ADFS (OpenID Connect)
+baseURL: https://login.maastrichtuniversity.nl/adfs
+scopes:
+- scope: openid
+  description: Standard OpenID Connect scope requesting an ID token.
+- scope: profile
+  description: Standard OIDC profile claims.
+- scope: email
+  description: Standard OIDC email claim.
+- scope: allatclaims
+  description: ADFS scope returning all configured claims for the relying party.
+- scope: aza
+  description: ADFS broker-client scope used for primary refresh-token flows.
+- scope: ugs
+  description: ADFS scope used by the Microsoft Universal Group Service.
+- scope: user_impersonation
+  description: Delegated access on behalf of the signed-in user.
+- scope: logon_cert
+  description: Issues a logon certificate for the authenticated user.
+- scope: vpn_cert
+  description: Issues a VPN certificate for the authenticated user.
+- scope: winhello_cert
+  description: Issues a Windows Hello for Business certificate.
+claims:
+- aud
+- iss
+- iat
+- exp
+- auth_time
+- nonce
+- at_hash
+- c_hash
+- sub
+- upn
+- unique_name
+- pwd_url
+- pwd_exp
+- mfa_auth_time
+- sid
+- nbf

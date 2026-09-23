@@ -1,0 +1,141 @@
+openapi: 3.2.0
+info:
+  title: Maastricht University Research Portal OAI-PMH Harvesting API
+  version: '2.0'
+  summary: Institution-operated OAI-PMH 2.0 harvesting endpoint for the Maastricht University research portal.
+  description: OAI-PMH 2.0 metadata harvesting interface operated by Maastricht University at cris.maastrichtuniversity.nl.
+  contact:
+    name: Maastricht University Library — Pure support
+    email: ub-pure@maastrichtuniversity.nl
+    url: https://cris.maastrichtuniversity.nl/
+  license:
+    name: OAI-PMH 2.0 protocol
+    url: https://www.openarchives.org/OAI/openarchivesprotocol.html
+  x-operator: institution
+  x-method: derived
+  x-generated: '2026-08-30'
+  x-source: https://cris.maastrichtuniversity.nl/ws/oai?verb=Identify
+servers:
+- url: https://cris.maastrichtuniversity.nl/ws/oai
+  description: Maastricht University OAI Repository — verified live 2026-08-30, keyless, application/xml
+tags:
+- name: Harvesting
+  description: OAI-PMH 2.0 verbs. Every response is an application/xml OAI-PMH envelope.
+paths:
+  /:
+    get:
+      operationId: oaiRequest
+      summary: Issue an OAI-PMH 2.0 request
+      description: Single-endpoint protocol. The `verb` query parameter selects the operation; the remaining parameters are conditional on the verb, exactly as OAI-PMH 2.0 defines. All six verbs below returned HTTP 200 with a well-formed OAI-PMH envelope when probed on 2026-08-30.
+      tags:
+      - Harvesting
+      parameters:
+      - name: verb
+        in: query
+        required: true
+        description: OAI-PMH verb. All six values were probed live and returned 200.
+        schema:
+          type: string
+          enum:
+          - Identify
+          - ListMetadataFormats
+          - ListSets
+          - ListIdentifiers
+          - ListRecords
+          - GetRecord
+      - name: metadataPrefix
+        in: query
+        required: false
+        description: Metadata format. Required for ListIdentifiers, ListRecords and GetRecord. The enum is the verbatim ListMetadataFormats response of this repository on 2026-08-30.
+        schema:
+          type: string
+          enum:
+          - qdc
+          - oai_cerif_openaire
+          - nl_didl
+          - oai_dc
+          - mods
+          - xmetadiss
+      - name: identifier
+        in: query
+        required: false
+        description: OAI identifier of a single record. Required for GetRecord. Observed form `oai:cris.maastrichtuniversity.nl:<set>/<uuid>`.
+        schema:
+          type: string
+          examples:
+          - oai:cris.maastrichtuniversity.nl:openaire_cris_publications/3b317128-b380-46d2-931f-73111d7d5c90
+      - name: set
+        in: query
+        required: false
+        description: Set to restrict a listing to. The repository exposes the seven OpenAIRE CRIS entity sets plus per-year and withFiles publication sets; the enum below lists the OpenAIRE CRIS sets observed on 2026-08-30 and is not exhaustive of the year-partitioned sets.
+        schema:
+          type: string
+          examples:
+          - openaire_cris_publications
+          - openaire_cris_patents
+          - openaire_cris_persons
+          - openaire_cris_orgunits
+          - openaire_cris_events
+          - openaire_cris_equipments
+          - openaire_cris_products
+          - publications:all
+          - publications:withFiles
+      - name: from
+        in: query
+        required: false
+        description: Lower bound selective-harvesting datestamp. Granularity YYYY-MM-DDThh:mm:ssZ.
+        schema:
+          type: string
+          format: date-time
+      - name: until
+        in: query
+        required: false
+        description: Upper bound selective-harvesting datestamp. Granularity YYYY-MM-DDThh:mm:ssZ.
+        schema:
+          type: string
+          format: date-time
+      - name: resumptionToken
+        in: query
+        required: false
+        description: Flow-control token returned with a partial list. Observed carrying `cursor` and `completeListSize` attributes (completeListSize 798420 for ListIdentifiers/oai_dc on 2026-08-30). Exclusive of all other parameters except `verb`.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OAI-PMH envelope. Protocol-level failures are ALSO returned as 200 with an <error> element carrying a `code` attribute — status code alone never indicates success here.
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/OAIPMHResponse'
+components:
+  schemas:
+    OAIPMHResponse:
+      type: object
+      description: Root OAI-PMH element. Described structurally rather than by XSD reference; the authoritative schema is http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd, and CERIF payloads validate against https://www.openaire.eu/schema/cris/1.2/openaire-cerif-profile.xsd.
+      properties:
+        responseDate:
+          type: string
+          format: date-time
+        request:
+          type: string
+          format: uri
+        error:
+          $ref: '#/components/schemas/OAIError'
+    OAIError:
+      type: object
+      description: OAI-PMH protocol error, returned inside a 200 response.
+      properties:
+        code:
+          type: string
+          description: OAI-PMH error code. `badVerb` was confirmed live on 2026-08-30 via ?verb=Bogus; the remaining values are the OAI-PMH 2.0 protocol set and were not individually provoked.
+          enum:
+          - badArgument
+          - badResumptionToken
+          - badVerb
+          - cannotDisseminateFormat
+          - idDoesNotExist
+          - noRecordsMatch
+          - noMetadataFormats
+          - noSetHierarchy
+        message:
+          type: string

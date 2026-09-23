@@ -1,0 +1,64 @@
+provider: Maastricht University
+providerId: maastricht
+generated: '2026-08-30'
+method: derived
+source: >-
+  Live probes 2026-08-30 plus the institution's own published governance pages. No versioning or
+  deprecation policy is published by Maastricht University for any surface below.
+description: >-
+  Lifecycle and change posture for Maastricht University's machine-readable surfaces. The honest
+  finding is that the institution publishes no API versioning policy, no deprecation policy, no
+  changelog and no status page — because it runs no API programme. What stability exists is
+  inherited from the standards and platforms underneath.
+surfaces:
+- id: oai-pmh
+  operator: institution
+  versioning: >-
+    Protocol-versioned only. ?verb=Identify reports protocolVersion 2.0; OAI-PMH 2.0 has been
+    stable since 2002. There is no institution-declared API version, no dated version parameter,
+    and no changelog.
+  deprecation_policy: none published
+  stability: >-
+    High by inheritance. earliestDatestamp 2016-03-29 shows an unbroken nine-year harvesting
+    history, and the endpoint URL has been stable across that period.
+  status_page: none
+- id: adfs-oidc-saml
+  operator: institution
+  versioning: >-
+    Standards-versioned. OpenID Connect 1.0 discovery and SAML 2.0 metadata; the SAML metadata is
+    signed with a key labelled key:20230503 in the federation copy.
+  deprecation_policy: >-
+    Not published by the institution. Federation-level key rollover and metadata refresh cadence
+    are governed by SURFconext, not by UM.
+  stability: high
+  status_page: none
+- id: gitlab
+  operator: institution
+  versioning: >-
+    GitLab REST API v4, path-versioned by the vendor. The institution operates the deployment; it
+    does not author or version the contract, and /api/v4/version and /api/v4/metadata both require
+    authentication so the running release is not publicly readable.
+  deprecation_policy: inherited from GitLab
+  stability: vendor-governed
+  status_page: none
+- id: dataversenl
+  operator: tenant
+  versioning: >-
+    DataverseNL runs Dataverse 6.9 per the installation's own OpenAPI description. Version policy is
+    the platform's; Maastricht is a collection (alias "maastricht") inside a shared national
+    installation, not a tenant subdomain and not the operator.
+  deprecation_policy: inherited from DataverseNL / SURF
+  stability: vendor-governed
+  status_page: none
+- id: pure
+  operator: tenant
+  versioning: >-
+    Elsevier Pure Web Service, path-versioned by Elsevier (/ws/api/524/). Version 524 is Elsevier's
+    numbering, not Maastricht's.
+  deprecation_policy: inherited from Elsevier
+  stability: vendor-governed
+  status_page: none
+notes: >-
+  Absence recorded deliberately: no status.maastrichtuniversity.nl, no developer portal, no
+  changelog, no RFC-9457 problem-details usage, and no published API deprecation window were found
+  on any probed host. This is a normal and correct result for a university that buys its software.

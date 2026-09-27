@@ -109,18 +109,6 @@ paths:
                 $ref: '#/components/schemas/OAIPMHResponse'
 components:
   schemas:
-    OAIPMHResponse:
-      type: object
-      description: Root OAI-PMH element. Described structurally rather than by XSD reference; the authoritative schema is http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd, and CERIF payloads validate against https://www.openaire.eu/schema/cris/1.2/openaire-cerif-profile.xsd.
-      properties:
-        responseDate:
-          type: string
-          format: date-time
-        request:
-          type: string
-          format: uri
-        error:
-          $ref: '#/components/schemas/OAIError'
     OAIError:
       type: object
       description: OAI-PMH protocol error, returned inside a 200 response.
@@ -139,3 +127,15 @@ components:
           - noSetHierarchy
         message:
           type: string
+    OAIPMHResponse:
+      type: object
+      description: Root OAI-PMH element. Described structurally rather than by XSD reference; the authoritative schema is http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd, and CERIF payloads validate against https://www.openaire.eu/schema/cris/1.2/openaire-cerif-profile.xsd.
+      properties:
+        responseDate:
+          type: string
+          format: date-time
+        request:
+          type: string
+          format: uri
+        error:
+          $ref: '#/components/schemas/OAIError'

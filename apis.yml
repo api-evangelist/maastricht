@@ -126,7 +126,7 @@ apis:
     say Maastricht. These are open-source projects, not a hosted institutional API programme.
   humanURL: https://github.com/MaastrichtU-IDS
   tags:
-  - Open-Source
+  - Open Source
   - Data Science
   - Semantic Web
   - SPARQL
@@ -137,12 +137,14 @@ apis:
   - Semantic Web
   - SPARQL
   - GitHub
+  - Open-Source
   properties:
   - type: GitHub
     url: https://github.com/MaastrichtU-IDS
   - type: Documentation
     url: https://dsri.maastrichtuniversity.nl/
 - aid: maastricht:datahub-github
+  x-published: false
   name: DataHub Maastricht (Research IT) Open Source
   x-operator: institution
   description: >-
@@ -156,13 +158,14 @@ apis:
   tags:
   - Research Data
   - iRODS
-  - Open-Source
+  - Open Source
   - Research IT
   tags_raw:
   - Research Data
   - iRODS
   - Open Source
   - Research IT
+  - Open-Source
   properties:
   - type: GitHub
     url: https://github.com/MaastrichtUniversity
@@ -180,7 +183,7 @@ apis:
   humanURL: https://github.com/MaastrichtU-Library
   tags:
   - Library
-  - Open-Source
+  - Open Source
   - Research Data Management
   - Open Education
   tags_raw:
@@ -188,6 +191,7 @@ apis:
   - Open Source
   - Research Data Management
   - Open Education
+  - Open-Source
   properties:
   - type: GitHub
     url: https://github.com/MaastrichtU-Library

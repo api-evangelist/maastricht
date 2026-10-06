@@ -59,7 +59,7 @@ tags:
 - Open Access
 - Public Research University
 created: '2026-06-03'
-modified: '2026-08-30'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: maastricht:identity-federation
@@ -337,6 +337,8 @@ apis:
   - type: x-example
     url: examples/maastricht-oai-badverb-example.xml
 common:
+- url: https://www.maastrichtuniversity.nl/rss.xml
+  type: BlogRSS
 - type: Website
   url: https://www.maastrichtuniversity.nl/
 - type: GitHubOrganization

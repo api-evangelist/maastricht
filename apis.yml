@@ -106,6 +106,11 @@ apis:
   humanURL: https://gitlab.maastrichtuniversity.nl/explore/projects
   baseURL: https://gitlab.maastrichtuniversity.nl/api/v4
   tags:
+  - Version Control
+  - GitLab
+  - Research Computing
+  - Self-Hosted
+  tags_raw:
   - Source Control
   - GitLab
   - Research Computing
